@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FeatureFilm from '../components/FeatureFilm.astro';
+let featureFilms = await fetch('https://tompataki.com/wp-json/wp/v2/featured_films?_embed&acf_format=standard').then((r) => r.json());
+
+---
+
+<Layout bodyClass="page-template-page-featured">
+    <section id="featured-films">
+        {
+            featureFilms.map((featureFilm) => 
+                <FeatureFilm
+                    id={featureFilm.id}
+                    logo={featureFilm.acf.logo}
+                    title={featureFilm.title.rendered}
+                    category={featureFilm.acf.category}
+                    thumbnailVimeoId={featureFilm.acf.thumbnail_vimeo_id}
+                    vimeoUrl={featureFilm.acf.vimeo_url}
+                    description={featureFilm.acf.details.description}
+                    staffMembers={featureFilm.acf.details.staff}
+                    imdb_url={featureFilm.acf.imdb_url}
+                />
+            )
+        }
+
+    </section>
+</Layout>

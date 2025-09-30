@@ -1,0 +1,65 @@
+---
+import imdbLogo from '../assets/imdb-black.png';
+interface Props {
+    id: string;
+    logo: string;
+    title: string;
+    category: string;
+    thumbnailVimeoId: string;
+    vimeoUrl: string;
+    description: string;
+    staffMembers: Array<string>;
+    imdb_url: string;
+}
+
+const {id, logo, title, category, thumbnailVimeoId, vimeoUrl, description, staffMembers, imdb_url} = Astro.props;
+---
+
+<div class={`featured-film feature-film--id-${id}`}>
+    <div class="featured-film-details" data-wow-duration="1s" data-wow-delay="1s">
+        <div class="thumbnail-cover">
+            
+                <iframe
+                    class="video showreel player nomargin"
+                    id={`vimeo_player-${id}`}
+                    src={`//player.vimeo.com/video/${thumbnailVimeoId}?api=1&player_id=vimeo_player&autoplay=1&loop=1&color=ffffff&autopause=0&muted=1&background=1`}
+                    frameborder="0"
+                    webkitallowfullscreen
+                    mozallowfullscreen
+                    allowfullscreen
+                    allow="autoplay"
+                    data-ready="true"
+                ></iframe>
+                <img class="logo" src={logo} alt={title}>
+            
+                {/* <img class="thumbnail" src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>"> */}
+            
+
+            <div class="image-content">
+                <div class="play">
+                    <a href={vimeoUrl}></a>
+                </div>
+            </div>
+        </div>
+        <p class="category">{category}</p>
+
+        <div class="content-wrapper">            
+            <div class="description" set:html={description}></div>
+            {
+                staffMembers.map((staffMember) => 
+                    <p class="staff-member">
+                        <span class="title">{staffMember.staff_title}</span>
+                        <span class="name">{staffMember.staff_name}</span>
+                    </p>
+                )
+            }
+            
+            <p class="imdb-logo">
+                <a href={imdb_url} target="blank">
+                    <img src={imdbLogo.src} alt="Imdb logo">
+                </a>
+            </p>
+
+        </div>
+    </div>
+</div>
