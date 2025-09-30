@@ -60,11 +60,11 @@ let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_fo
 				reels.map((reel) => 
 					<IndexReels 
 						id={reel.id}
-						image={reel.acf.reel_image}
-						director={reel.acf.director})
-						videoUrl=''
-						title=''
-						subtitle='' />
+						image={reel._embedded['wp:featuredmedia'][0].source_url}
+						director={reel.acf.directed_by}
+						videoUrl={reel.acf.vimeo_url}
+						title={reel.title.rendered}
+						subtitle={reel.acf.sub_title} />
 				)
 			}
         </div>

@@ -1,5 +1,6 @@
 ---
-import playBlack from '../assets/play_black.png';
+import playBlack from '../assets/play_black-solid.png';
+import playWhite from '../assets/play_white-solid.png';
 interface Props {
 	id: string;
 	image: string;
@@ -9,6 +10,7 @@ interface Props {
 	subtitle: string;
 }
 
+const blackPlay = 68;
 const { id, image, director, videoUrl, title, subtitle} = Astro.props;
 ---
 <div class={`grid-item reel-id-${id}`} id="vimeo-video" style={`--aspect-ratio: 16/9; background-image: url(${image});`}>
@@ -18,7 +20,7 @@ const { id, image, director, videoUrl, title, subtitle} = Astro.props;
         </p>
         <h2><a href={videoUrl}>{title}</a></h2>
         <div class="play">
-                <img src={playBlack.src} alt="Play">
+                <img src={id==blackPlay ? playBlack.src : playWhite.src} alt="Play">
             <a href={videoUrl}></a>
         </div>
         <p>{subtitle}</p>
