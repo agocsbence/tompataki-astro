@@ -1,0 +1,61 @@
+---
+import playBlack from '../assets/play_black-solid.png';
+import playWhite from '../assets/play_white-solid.png';
+import Layout from '../layouts/Layout.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/31?_embed&acf_format=standard').then((r) => r.json());
+let commercials = await fetch('https://tompataki.com/wp-json/wp/v2/commercials?_embed&per_page=100&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="page-template-page-commercials">
+
+    <section id="commercials">
+        <h1>{page.title.rendered}</h1>
+        <ul>
+            {
+                commercials.map((commercial) => 
+                    <li class="play">
+                        <a href={commercial.acf.commercial_video_url}>
+                            <p>{commercial.acf.title_in_list}</p>
+                        </a>
+                    </li>
+                )
+            }
+        </ul>
+        <div class="grid-gap">
+            {
+                commercials.map((commercial) => 
+                    <div class="grid-item" id={`commercial-${commercial.id}`}>
+                        <div class="grid-item-image" style={`--aspect-ratio: 16/9; background-image: url(${commercial._embedded['wp:featuredmedia'][0].source_url});`}>
+                            <div id="grid-details">
+                                <p>directed by
+                                    <span>{commercial.acf.directed_by}</span>
+                                </p>
+                                <h2><a href={commercial.acf.commercial_video_url} set:html={commercial.title.rendered}></a></h2>
+                                <div class="play">
+                                    { commercial.id == 134 || commercial.id == 122 ?
+
+                                        <a href={commercial.acf.commercial_video_url}>
+                                            <img src={playBlack.src} alt="Play">
+                                        </a>
+
+                                        :
+
+                                        <a href={commercial.acf.commercial_video_url}>
+                                            <img src={playWhite.src} alt="Play">
+                                        </a>
+                                    }
+
+                                </div>
+                                <p>{commercial.acf.sub_title}</p>
+                            </div>
+                        </div>
+                        <div class="grid-item-position">
+                            <span>{commercial.acf.position}</span>
+                        </div>
+                    </div>
+                )
+            }
+        </div>
+    </section>
+    
+</Layout>
