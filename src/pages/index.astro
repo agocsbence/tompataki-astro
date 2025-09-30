@@ -71,27 +71,28 @@ let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_fo
     </section>
     <section id="news" class="desktop-only">
         <h1>
-            News
+            Related
         </h1>
         <div id="news-list">
             <div class="swiper-wrapper">
                 {
                     posts.map((post) => 
+
                         <div class="swiper-slide">
                             <div class="news-list-item">
+                                <div class="image" style={`background-image: url(${post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url});`}></div>
                                 <div class="text">
+                                    <div class="news-category">
+                                        <span>{post.acf.category}</span>
+                                    </div>
                                     <h2><a href={post.acf.website_link} target="blank">{post.title.rendered}</a></h2>
                                     <div set:html={post.excerpt.rendered}></div>
                                     <div class="news-meta">
                                         <div class="span-50 left">
-                                            <span>{post.modified}</span>
-                                        </div>
-                                        <div class="span-50 right">
-                                            <span><a href={post.acf.website_link} target="blank">{post.acf.website}</a></span>
+                                            <span><a href={post.acf.website_link} target="blank">READ MORE</a></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="image" style={`background-image: url(${post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url});`}></div>
                             </div>
                         </div>
                     )
@@ -102,6 +103,9 @@ let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_fo
 
         </div>
     </section>
+    <div class="section section-terms">
+        <a href="/terms-conditions">TERMS & CONDITIONS</a>
+    </div>
 </Layout>
 
 <script>
@@ -170,62 +174,12 @@ let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_fo
         }
 
     });
-    // if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    //     var swiper = new Swiper('#mobile-index-slider-container', {
-    //         loop: true,
-    //         speed: 800,
-    //         navigation: {
-    //             nextEl: '.swiper-button-next',
-    //             prevEl: '.swiper-button-prev',
-    //         },
-    //         autoplay: {
-    //             delay: 4000,
-    //             disableOnInteraction: false,
-    //         },
-    //         pagination: {
-    //             el: '.swiper-pagination',
-    //             // dynamicBullets: true,
-    //             clickable: true,
-    //         }
-    //     });
-    // } else {
-    //     var swiper = new Swiper('#index-slider-container', {
-    //         // loop: true,
-    //         speed: 800,
-    //         preventClicks: false,
-    //         preventClicksPropagation: false,
-    //         slideActiveClass: 'slider-video-active',
-    //         on: {
-    //             transitionStart: function() {
-    //                 var activeSlide = document.getElementsByClassName("slider-video-active");
-    //                 var activeId = document.getElementById(activeSlide.item(0).childNodes[1].id);
-    //                 activeId.pause();
-    //                 activeId.currentTime = 0;
-    //             },
-    //             transitionEnd: function() {
-    //                 var activeSlide = document.getElementsByClassName("slider-video-active");
-    //                 var activeId = document.getElementById(activeSlide.item(0).childNodes[1].id);
-    //                 activeId.play();
-    //             }
-    //         },
-    //         navigation: {
-    //             nextEl: '.swiper-button-next',
-    //             prevEl: '.swiper-button-prev',
-    //         },
-    //         autoplay: {
-    //             delay: 4000,
-    //             disableOnInteraction: false,
-    //         },
-    //         pagination: {
-    //             el: '.swiper-pagination',
-    //             // dynamicBullets: true,
-    //             clickable: true,
-    //         }
-    //     });
-    // }
 
-    var newsSwiper = new Swiper('#news-list', {
-        loop: true,
+    const newsSwiper = new Swiper('#news-list', {
+        modules: [Navigation],
+        loop: false,
+        slidesPerView: 3,
+        spaceBetween: 32,
         navigation: {
             nextEl: '.nextB',
             prevEl: '.prevB',
