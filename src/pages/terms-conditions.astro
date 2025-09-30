@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/625?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="terms-conditions">
+    <div class="single-page__wrapper">
+        <h1>{page.title.rendered}</h1>
+        <div class="single-page__content" set:html={page.content.rendered}></div>
+    </div>
+</Layout>
