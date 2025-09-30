@@ -1,22 +1,117 @@
+---
+import '../styles/global.css';
+const { bodyClass } = Astro.props;
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+		<script is:inline src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    	<script is:inline src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Tom Pataki</title>
 	</head>
-	<body>
-		<slot />
+	<body class={bodyClass}>
+		<Header />
+			<section id="main-content">
+				<slot />
+			</section>
+		<Footer />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+    #main-content #featured-films .featured-film .studio-logo {width:100%;max-width:200px;object-fit: contain;}
+    #main-content #featured-films .featured-film .featured-film-info img {max-height:80px;}
+    .desktop-only { display: none; }
+    .mobile-only{ display: block; }
+    @media screen and (min-width: 991px) {
+        .mobile-only { display: none; }   
+        .desktop-only { display: block; }
+    }
+
 </style>
+
+<script is:inline>
+	$(document).ready(function() {
+	//play embedded Vimeo video
+	$('.play').each(function (index, element) {
+	    var href = $(element).find('a').attr('href');
+	    $(element).magnificPopup({
+	        items: {
+	            src: href
+	        },
+	        type: 'iframe'
+	    });
+	});
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$('.grid-details h2').each(function (index, element) {
+		    var href = $(element).find('a').attr('href');
+		    $(element).magnificPopup({
+		        items: {
+		            src: href
+		        },
+		        type: 'iframe'
+		    });
+		});
+		$('.featured-film-info .play').each(function (index, element) {
+		    var href = $(element).find('a').attr('href');
+		    $(element).magnificPopup({
+		        items: {
+		            src: href
+		        },
+		        type: 'iframe'
+		    });
+		});
+	}
+	//VIMEO VIDEO FULLSCREEN
+	var video = $('#vimeo-video');
+	if (video.requestFullscreen) {
+	  video.requestFullscreen();
+	}
+	//TOGGLE SEARCH OVERLAY
+	$('#searchButton').on('click', function(){
+	    $('#search-overlay').removeClass('hide');
+	    $('#search-overlay').addClass('show');
+	});
+	$('#search-overlay span').on('click', function(){
+	    $('#search-overlay').removeClass('show');
+	    $('#search-overlay').addClass('hide');
+	});
+
+	//NO RESULTS PAGE
+	if( $('body').hasClass('search-no-results') ) {
+		$('#searchform').append('<h3 class="no-results">No results</h3>');
+		$('#search-overlay-wrapper span').on('click', function() {
+			window.location.replace('http://tompataki.com');
+		})
+	}
+
+	//STICKY NAVBAR
+   	var stickyNavTop = $('#navbar').offset().top;
+   	
+   	var stickyNav = function(){
+	    var scrollTop = $(window).scrollTop();
+	    if (scrollTop > stickyNavTop) { 
+	        $('#navbar').addClass('sticky');
+	    } else {
+	        $('#navbar').removeClass('sticky'); 
+	    }
+	};
+
+	stickyNav();
+	
+	$(window).scroll(function() {
+		stickyNav();
+	});
+});
+</script>

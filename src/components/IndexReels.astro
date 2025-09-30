@@ -1,0 +1,26 @@
+---
+import playBlack from '../assets/play_black.png';
+interface Props {
+	id: string;
+	image: string;
+	director: string;
+	videoUrl: string;
+	title: string;
+	subtitle: string;
+}
+
+const { id, image, director, videoUrl, title, subtitle} = Astro.props;
+---
+<div class={`grid-item reel-id-${id}`} id="vimeo-video" style={`--aspect-ratio: 16/9; background-image: url(${image});`}>
+    <div id="grid-details">
+        <p>directed by
+            <span>{director}</span>
+        </p>
+        <h2><a href={videoUrl}>{title}</a></h2>
+        <div class="play">
+                <img src={playBlack.src} alt="Play">
+            <a href={videoUrl}></a>
+        </div>
+        <p>{subtitle}</p>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+---
+import loadIcon from '../assets/load.gif';
+import searchIcon from '../assets/search.svg';
+import logoBlack from '../assets/logo-black.png';
+---
+    <!-- <div class="preloader-wrapper">
+        <div class="preloader">
+            <img src={loadIcon.src} alt="loading...">
+        </div>
+    </div> -->
+
+    <section id="header">
+        <div id="headline">
+            <a href="/">
+                <img src={logoBlack.src} alt="Tom Pataki logo">
+            </a>
+            <span>EN | HU</span>
+        </div>
+        <div id="navbar">
+
+            <div id="navbar-wrapper">
+                <div class="menu-main-menu-container">
+                    <ul id="menu-main-menu" class="menu">
+                        <li id="menu-item-265" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="/feature-films">Feature films / Series</a></li>
+                        <li id="menu-item-64" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-64"><a href="/commercials">Commercials</a></li>
+                        <li id="menu-item-63" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-63"><a href="/special-projects">Special projects</a></li>
+                        <li id="menu-item-62" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="/showreel">Showreel</a></li>
+                        <li id="menu-item-61" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-61"><a href="/about">About</a></li>
+                        <li id="menu-item-60" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <img src={searchIcon.src} alt="Search" id="searchButton">
+            </div>
+
+        </div>
+    </section>
+    <div id="search-overlay">
+        <div id="search-overlay-wrapper">
+            <span>X</span>
+            <form role="search" method="get" id="searchform" action="">
+                <div>
+                    <label for="s">Search anything and hit enter</label>
+                    <input type="text" value="" name="s" id="s" placeholder="Search" />
+                    <input type="submit" id="searchsubmit" value="Search" class="button" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <section id="mobile-header">
+        <div id="logo">
+            <a href="/">
+                <img src={logoBlack.src} alt="Tom Pataki logo">
+            </a>
+        </div>
+        <div id="menu">
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="mobileMenu()">&#9776;</a>
+        </div>
+        <div id="mobile-navbar" class="mobile-nav">
+
+            <div class="menu-main-menu-container">
+                <ul id="menu-main-menu-1" class="menu">
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="/feature-films">Feature films / Series</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-64"><a href="/commercials">Commercials</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-63"><a href="/special-projects">Special projects</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="/showreel">Showreel</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-61"><a href="/about">About</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+    <script>
+    function mobileMenu() {
+        var x = document.getElementById("mobile-navbar");
+        if (x.className === "mobile-nav") {
+            x.className += " show";
+        } else {
+            x.className = "mobile-nav";
+        }
+    }
+    </script>

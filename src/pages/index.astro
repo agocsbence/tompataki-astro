@@ -1,11 +1,234 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import IndexSliderMobile from '../components/IndexSliderMobile.astro';
+import IndexSlider from '../components/IndexSlider.astro';
+import IndexReels from '../components/IndexReels.astro';
+let slides = await fetch('https://tompataki.com/wp-json/wp/v2/index_slider?_embed&acf_format=standard').then((r) => r.json());
+let reels = await fetch('https://tompataki.com/wp-json/wp/v2/reel?_embed&acf_format=standard').then((r) => r.json());
+let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_format=standard').then((r) => r.json());
 ---
 
-<Layout>
-	<Welcome />
+<Layout bodyClass="home">
+	<div id="mobile-index-slider" class="mobile-only">
+        <h2>Newest projects</h2>
+        <div id="mobile-index-slider-container">
+            <div class="swiper-wrapper">
+				{
+					slides.map((slide) => 
+						<IndexSliderMobile
+							title={slide.title.rendered}
+							image={slide.acf.mobile_slider_image}
+							director={slide.acf.director}
+							videoLogo={slide.acf.video_logo}
+							vimeoUrl={slide.acf.vimeo_url} />
+					)
+				}             
+            </div>
+
+            <!-- <div class="swiper-button-prev swiper-button-white"><span>Prev</span></div> -->
+            <div class="swiper-button-next swiper-button-white"><span>Next</span></div>
+        </div>
+    </div>
+
+    <section id="index-slider" class="desktop-only">
+        <h2>Newest projects</h2>
+        <div id="index-slider-container">
+            <div class="swiper-wrapper">
+				{
+					slides.map((slide) => 
+						<IndexSlider 
+							id={slide.id}
+							title={slide.title.rendered}
+							shortVimeoId={slide.acf.short_vimeo_id}
+							director={slide.acf.director}
+							videoLogo={slide.acf.video_logo}
+							vimeoUrl={slide.acf.vimeo_url} />
+					)
+				} 
+            </div>
+
+            <div class="swiper-pagination swiper-pagination-white"></div>
+
+            <div class="swiper-button-prev swiper-button-white"></div>
+            <div class="swiper-button-next swiper-button-white"></div>
+        </div>
+    </section>
+    <section id="reel" class="desktop-only">
+        <h1>- Reel -</h1>
+        <div class="grid-gap">
+            {
+				reels.map((reel) => 
+					<IndexReels 
+						id={reel.id}
+						image={reel.acf.reel_image}
+						director={reel.acf.director})
+						videoUrl=''
+						title=''
+						subtitle='' />
+				)
+			}
+        </div>
+    </section>
+    <section id="news" class="desktop-only">
+        <h1>
+            News
+        </h1>
+        <div id="news-list">
+            <div class="swiper-wrapper">
+                {
+                    posts.map((post) => 
+                        <div class="swiper-slide">
+                            <div class="news-list-item">
+                                <div class="text">
+                                    <h2><a href={post.acf.website_link} target="blank">{post.title.rendered}</a></h2>
+                                    <div set:html={post.excerpt.rendered}></div>
+                                    <div class="news-meta">
+                                        <div class="span-50 left">
+                                            <span>{post.modified}</span>
+                                        </div>
+                                        <div class="span-50 right">
+                                            <span><a href={post.acf.website_link} target="blank">{post.acf.website}</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image" style={`background-image: url(${post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url});`}></div>
+                            </div>
+                        </div>
+                    )
+                }
+            </div>
+            <div class="swiper-button-prev prevB swiper-button-white"></div>
+            <div class="swiper-button-next nextB swiper-button-white"></div>
+
+        </div>
+    </section>
 </Layout>
+
+<script>
+    import Swiper from 'swiper';
+    import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+    import 'swiper/css';
+    import 'swiper/css/navigation';
+    import 'swiper/css/pagination';
+    import 'swiper/css/autoplay';
+
+    document.addEventListener( 'DOMContentLoaded', function() {
+
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            const hero_mobile_swiper = new Swiper("#mobile-index-slider-container", {
+                modules: [Navigation, Pagination, Autoplay],
+                loop: true,
+                speed: 800,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    // dynamicBullets: true,
+                    clickable: true,
+                }
+            });
+        } else {
+            const hero_swiper = new Swiper("#index-slider-container", {
+                modules: [Navigation, Pagination, Autoplay],
+                speed: 800,
+                preventClicks: false,
+                preventClicksPropagation: false,
+                slideActiveClass: 'slider-video-active',
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                on: {
+                    transitionStart: function() {
+                        var activeSlide = document.getElementsByClassName("slider-video-active");
+                        var activeId = document.getElementById(activeSlide[0].childNodes[1].id);
+                        activeId.pause();
+                        activeId.currentTime = 0;
+                    },
+                    transitionEnd: function() {
+                        var activeSlide = document.getElementsByClassName("slider-video-active");
+                        var activeId = document.getElementById(activeSlide[0].childNodes[1].id);
+                        activeId.play();
+                    }
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    // dynamicBullets: true,
+                    clickable: true,
+                }
+            });
+        }
+
+    });
+    // if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    //     var swiper = new Swiper('#mobile-index-slider-container', {
+    //         loop: true,
+    //         speed: 800,
+    //         navigation: {
+    //             nextEl: '.swiper-button-next',
+    //             prevEl: '.swiper-button-prev',
+    //         },
+    //         autoplay: {
+    //             delay: 4000,
+    //             disableOnInteraction: false,
+    //         },
+    //         pagination: {
+    //             el: '.swiper-pagination',
+    //             // dynamicBullets: true,
+    //             clickable: true,
+    //         }
+    //     });
+    // } else {
+    //     var swiper = new Swiper('#index-slider-container', {
+    //         // loop: true,
+    //         speed: 800,
+    //         preventClicks: false,
+    //         preventClicksPropagation: false,
+    //         slideActiveClass: 'slider-video-active',
+    //         on: {
+    //             transitionStart: function() {
+    //                 var activeSlide = document.getElementsByClassName("slider-video-active");
+    //                 var activeId = document.getElementById(activeSlide.item(0).childNodes[1].id);
+    //                 activeId.pause();
+    //                 activeId.currentTime = 0;
+    //             },
+    //             transitionEnd: function() {
+    //                 var activeSlide = document.getElementsByClassName("slider-video-active");
+    //                 var activeId = document.getElementById(activeSlide.item(0).childNodes[1].id);
+    //                 activeId.play();
+    //             }
+    //         },
+    //         navigation: {
+    //             nextEl: '.swiper-button-next',
+    //             prevEl: '.swiper-button-prev',
+    //         },
+    //         autoplay: {
+    //             delay: 4000,
+    //             disableOnInteraction: false,
+    //         },
+    //         pagination: {
+    //             el: '.swiper-pagination',
+    //             // dynamicBullets: true,
+    //             clickable: true,
+    //         }
+    //     });
+    // }
+
+    var newsSwiper = new Swiper('#news-list', {
+        loop: true,
+        navigation: {
+            nextEl: '.nextB',
+            prevEl: '.prevB',
+        }
+    });
+</script>
