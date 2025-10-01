@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Vimeo } from 'astro-embed';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/36?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="page-template-template-showreel">
+    <section id="portfolio">
+        <section id="showreel">
+            <Vimeo 
+                id={`https://vimeo.com/${page.acf.showreel_vimeo_id}`}
+                posterQuality="max"
+                params="color=000000&muted=1"
+            />
+            <!-- <iframe
+                class="video showreel player nomargin"
+                id="vimeo_player"
+                src={`//player.vimeo.com/video/${page.acf.showreel_vimeo_id}?api=1&player_id=vimeo_player&autoplay=0&loop=1&color=ffffff&autopause=0&muted=0&background=1`}
+                frameborder="0"
+                webkitallowfullscreen
+                mozallowfullscreen
+                allowfullscreen
+                allow="autoplay"
+                data-ready="true"
+            ></iframe> -->
+        </section>
+        <!-- <div class="mute-button muted">
+            <div class="icon mute-button">
+                <div class="button icon-button no-arrow mute-button">
+                    <p>SOUND <span class="button-text">OFF</span></p>
+                </div>
+            </div>
+        </div> -->
+    </section>
+</Layout>
+
+<!-- <script is:inline src="https://player.vimeo.com/api/player.js"></script>
+<script is:inline>
+    var vimeo_iframe = document.querySelector('#vimeo_player');
+    var player = new Vimeo.Player(vimeo_iframe);
+    var muteBtn = document.querySelector('.mute-button');
+    var btnText = document.querySelector('.button-text');
+
+    player.ready().then(function() {
+        player.setVolume(0);
+        vimeo_iframe.click();
+    });
+
+    muteBtn.addEventListener('click', function(e) {
+        console.log('mute button clicked');
+        if( muteBtn.classList.contains('muted') ) {
+            btnText.innerHTML = 'ON';
+            player.setVolume(1);
+            muteBtn.classList.remove('muted');
+        } else {
+            muteBtn.classList.add('muted');
+            btnText.innerHTML = 'OFF'
+            player.setVolume(0);
+        }
+    });
+</script> -->
