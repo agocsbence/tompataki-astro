@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Search from "astro-pagefind/components/Search";
+---
+
+<Layout bodyClass="search-results">
+
+    <section id="search-results">
+ 
+            <div id="search-input-wrapper">
+                <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+            </div>
+
+            <div id="search-results-wrapper" class="grid-gap">
+                <div class="search-result play grid-item">
+                    <a href={vimeo_url}>
+                        <div class="thumbnail" style={`background: url(${image})`}></div>
+                        <div class="details">
+                            <h2>{title}</h2>
+                            <p class="subtitle">{subtitle}</p>
+                            <p>DIRECTOR
+                                <span>{directed_by}</span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    </section>
+
+</Layout>

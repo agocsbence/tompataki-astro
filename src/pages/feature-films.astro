@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FeatureFilm from '../components/FeatureFilm.astro';
+import TermsConditions from '../components/TermsConditions.astro';
 let featureFilms = await fetch('https://tompataki.com/wp-json/wp/v2/featured_films?_embed&acf_format=standard').then((r) => r.json());
 
 ---
@@ -24,4 +25,5 @@ let featureFilms = await fetch('https://tompataki.com/wp-json/wp/v2/featured_fil
         }
 
     </section>
+    <TermsConditions />
 </Layout>

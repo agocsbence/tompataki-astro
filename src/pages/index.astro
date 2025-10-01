@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import IndexSliderMobile from '../components/IndexSliderMobile.astro';
 import IndexSlider from '../components/IndexSlider.astro';
 import IndexReels from '../components/IndexReels.astro';
+import TermsConditions from '../components/TermsConditions.astro';
 let slides = await fetch('https://tompataki.com/wp-json/wp/v2/index_slider?_embed&acf_format=standard').then((r) => r.json());
 let reels = await fetch('https://tompataki.com/wp-json/wp/v2/reel?_embed&acf_format=standard').then((r) => r.json());
 let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_format=standard').then((r) => r.json());
@@ -103,9 +104,7 @@ let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_fo
 
         </div>
     </section>
-    <div class="section section-terms">
-        <a href="/terms-conditions">TERMS & CONDITIONS</a>
-    </div>
+    <TermsConditions />
 </Layout>
 
 <script>

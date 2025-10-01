@@ -5579,7 +5579,7 @@ body.special_projects-template-houdinivid-single-special_projects {
   background: #000;
 }
 .page-template-page-about #main-content {
-  background-image: url("../img/about.png");
+  background-image: url("../assets/about.png");
   background-position: 80% 100%;
   background-size: 50%;
   background-repeat: no-repeat;
@@ -7169,4 +7169,18 @@ img.mfp-img {
     padding-left: 6px;
     padding-right: 6px;
   }
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: #000 !important;
+}
+#index-slider-container .swiper-button-prev,
+#index-slider-container .swiper-button-next {
+  color: #fff !important;
+}
+#index-slider-container .swiper-pagination {
+  bottom: 2rem !important;
+}
+#index-slider-container .swiper-pagination-bullet {
+  background: #fff !important;
 }

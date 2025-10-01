@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TermsConditions from '../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/38?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="page-template-page-about">
+
+    <section id="about">
+        <h1>{page.title.rendered}</h1>
+        <div id="about-content">
+            <div id="about-content-text">
+                <p>
+                    <span>Tom</span> IS AN<br>
+                    <span>ART DIRECTOR, PRODUCTION DESIGNER</span><br>
+                    AND <span>PRODUCT DESIGNER.</span>
+                    <br>
+                    <br>
+                    <div class="about-description" set:html={page.content.rendered}></div>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <TermsConditions />
+
+</Layout>
