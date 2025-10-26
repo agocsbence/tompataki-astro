@@ -6,7 +6,7 @@ let featureFilms = await fetch('https://tompataki.com/wp-json/wp/v2/featured_fil
 
 ---
 
-<Layout bodyClass="page-template-page-featured">
+<Layout bodyClass="page-template-page-featured" description="Feature films I was working on">
     <section id="featured-films">
         {
             featureFilms.map((featureFilm) => 

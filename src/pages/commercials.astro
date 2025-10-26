@@ -7,7 +7,7 @@ let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/31?_embed&acf_
 let commercials = await fetch('https://tompataki.com/wp-json/wp/v2/commercials?_embed&per_page=100&acf_format=standard').then((r) => r.json());
 ---
 
-<Layout bodyClass="page-template-page-commercials">
+<Layout bodyClass="page-template-page-commercials" description="Commercials I was working on">
 
     <section id="commercials">
         <h1>{page.title.rendered}</h1>

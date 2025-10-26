@@ -9,7 +9,7 @@ let reels = await fetch('https://tompataki.com/wp-json/wp/v2/reel?_embed&acf_for
 let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_format=standard').then((r) => r.json());
 ---
 
-<Layout bodyClass="home">
+<Layout bodyClass="home" description="Newest projects, reels, and related news about me">
 	<div id="mobile-index-slider" class="mobile-only">
         <h2>Newest projects</h2>
         <div id="mobile-index-slider-container">
@@ -90,7 +90,7 @@ let posts = await fetch('https://tompataki.com/wp-json/wp/v2/posts?_embed&acf_fo
                                     <div set:html={post.excerpt.rendered}></div>
                                     <div class="news-meta">
                                         <div class="span-50 left">
-                                            <span><a href={post.acf.website_link} target="blank">READ MORE</a></span>
+                                            <span><a href={post.acf.website_link} target="blank">CHECK IT OUT</a></span>
                                         </div>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@ import TermsConditions from '../components/TermsConditions.astro';
 let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/38?_embed&acf_format=standard').then((r) => r.json());
 ---
 
-<Layout bodyClass="page-template-page-about">
+<Layout bodyClass="page-template-page-about" description="About me and my origins">
 
     <section id="about">
         <h1>{page.title.rendered}</h1>

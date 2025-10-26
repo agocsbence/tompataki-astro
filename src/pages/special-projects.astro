@@ -5,7 +5,7 @@ let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/34?_embed&acf_
 let projects = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects?_embed&per_page=100&acf_format=standard').then((r) => r.json());
 ---
 
-<Layout bodyClass="page-template-page-special">
+<Layout bodyClass="page-template-page-special" description="Special projects I was working on">
 
     <section id="special-projects">
         <h1>{page.title.rendered}</h1>

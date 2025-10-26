@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/40?_embed&acf_format=standard').then((r) => r.json());
 ---
 
-<Layout bodyClass="page-template-page-contact">
+<Layout bodyClass="page-template-page-contact" description="Contact me for work inquiries or other questions">
 
     <section id="contact">
     <h1>{page.title.rendered}</h1>

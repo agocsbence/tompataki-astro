@@ -4,7 +4,7 @@ import { Vimeo } from 'astro-embed';
 let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/36?_embed&acf_format=standard').then((r) => r.json());
 ---
 
-<Layout bodyClass="page-template-template-showreel">
+<Layout bodyClass="page-template-template-showreel" description="my showreel and selected works">
     <section id="portfolio">
         <section id="showreel">
             <Vimeo 
