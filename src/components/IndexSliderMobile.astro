@@ -14,7 +14,7 @@ const {title, image, director, videoLogo, vimeoUrl} = Astro.props;
 <div class="swiper-slide" style={`background-image: url(${image});`}>
     <div class="index-slider-info">
         <p><span>director </span>{director}</p>
-        <img src={videoLogo} alt={title} />
+        <img src={videoLogo} alt={title} loading="lazy" />
         <p><span class="title">{title}</span></p>
         <div class="play">
             <img src={playWhite.src} alt="Play">

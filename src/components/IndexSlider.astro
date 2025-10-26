@@ -27,7 +27,7 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl} = Astro.props;
     ></iframe>
     <div class="index-slider-info">
         <p><span>director </span>{director}</p>
-        <img src={videoLogo} alt={title} />
+        <img src={videoLogo} alt={title} loading="lazy" />
         <p><span class="title">{title}</span></p>
         <div class="play">
             <img src={playWhite.src} alt="Play">
