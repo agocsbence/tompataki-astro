@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TermsConditions from '../../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/97?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="special_projects-template-lounge-single-special_projects">
+
+    <section id="special-projects-page">
+        <img width="100%" src={page.acf.page_content_image_01} alt="Hollywood Lounge">
+
+        <div id="tab-wrapper">
+            <div class="tab">
+                &nbsp;
+            </div>
+            <div class="tab">
+                &nbsp;
+            </div>
+            <div class="tab">
+                &nbsp;
+            </div>
+            <div class="tab">
+                <p set:html={page.acf.tab_text_01}></p>
+            </div>
+        </div>
+
+        <img width="100%" src={page.acf.page_content_image_02} alt="Hollywood Lounge">
+    </section>
+
+    <TermsConditions />
+    
+</Layout>

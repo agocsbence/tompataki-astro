@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TermsConditions from '../../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/98?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="special_projects-template-rollingstone-single-special_projects">
+
+    <section id="special-projects-page" class="rollingstone-special-project">
+        <img width="100%" src={page.acf.page_content_image} alt="Rolling Stone">
+        <div class="text-section" style="margin: 2rem 0;">
+            <h3>MELISSA McCARTHY COVER</h3>
+            <p><span>photographer</span><span>Mark Seliger</span></p>
+            <p><span>model</span><span>Melissa McCarthy</span></p>
+            <p><span>producer</span><span>Ruth Levy</span></p>
+            <p><span>creative director</span><span>Jodi Peckmann</span></p>
+            <p><span>set designer</span><span>Rob Strauss</span></p>
+            <p><span>art director</span><span>Tom Pataki</span></p>
+            <h3><span>/2014/</span></h3>
+        </div>
+    </section>
+
+    <TermsConditions />
+    
+</Layout>

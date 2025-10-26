@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TermsConditions from '../../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/100?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="special_projects-template-vinylino-single-special_projects">
+
+    <section id="special-projects-page" class="vinylino-special-project">
+        <img width="100%" src={page.acf.page_content_image_01} alt="The Vinylino">
+        <div class="text-section" style="margin: 2rem 0;">
+            <h1>THE VINYLINO PHOTOSHOOT</h1>
+            <p><span>photographer</span><span>BENDEGUZ CSIZMADIA</span></p>
+            <p><span>models</span><span>Dorka Banki</span></p>
+            <p><span>&nbsp;</span><span>Laura Török</span></p>
+            <p><span>Co-Founder</span><span>Sari Szabo</span></p>
+            <p><span>set designer/product designer</span><span>Tom Pataki</span></p>
+            <p><span>make up artist</span><span>Agi Rikk</span></p>
+            <h3><span>/2017/</span></h3>
+        </div>
+        <img width="100%" src={page.acf.page_content_image_02} alt="The Vinylino">
+        <div class="text-section">
+            <h3><a href="http://www.thevinylino.com" target="blank">www.thevinylino.com</a></h3>
+        </div>
+    </section>
+
+    <TermsConditions />
+    
+</Layout>

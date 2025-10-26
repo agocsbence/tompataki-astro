@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TermsConditions from '../../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/99?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="special_projects-template-spectral-single-special_projects">
+
+    <section id="special-projects-page" class="spectral-special-project">
+        <img width="100%" src={page.acf.page_content_image_01} alt="Spectral">
+        <div class="text-section" style="margin: 2rem 0;">
+            <h3>we had less than a week to create a Lockheed Martin C-130 interior for SPECTRAL Movie for Netflix.</h3>
+            <p><span>director</span><span>Nic Mathieu</span></p>
+            <p><span>cinematographer</span><span>Bojan Bazelli</span></p>
+            <p><span>Set designer (vehicles)</span><span>Ron Mendel</span></p>
+            <p><span>art director</span><span>Tom Pataki</span></p>
+            <p><span>construction manager</span><span>Jozsef Kiss</span></p>
+            <h3><span>2016</span></h3>
+        </div>
+        <img width="100%" src={page.acf.page_content_image_02} alt="Spectral">
+    </section>
+
+    <TermsConditions />
+    
+</Layout>

@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TermsConditions from '../../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/79?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="special_projects-template-houdini-single-special_projects">
+
+    <section id="special-projects-page" class="houdini-special-project">
+        <div class="text-block">
+            <div class="text-section">
+                <h3>HOUDINI PHOTOSHOOT</h3>
+                <br>
+                <p><span>photographer</span><span>Nels Israelson</span></p>
+                <p><span>producer</span><span>Karla Braun</span></p>
+                <p><span>art director</span><span>Tom Pataki</span></p>
+                <h3><span>/2014/</span></h3>
+            </div>
+        </div>
+        <div class="slider-block">
+            <div class="houdini-slider">
+                <div class="swiper-wrapper">
+                    {
+                        page.acf.photos.map((photo) => 
+                            <div class="swiper-slide">
+                                <img src={photo.photo} alt="">
+                            </div>
+                        )
+                    }             
+                </div>
+                <div class="swiper-button-prev swiper-button-black"></div>
+                <div class="swiper-button-next swiper-button-black"></div>
+            </div>
+        </div>
+    </section>
+
+    <TermsConditions />
+    
+</Layout>
+
+<script>
+import Swiper from 'swiper';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/autoplay';
+    
+const hero_mobile_swiper = new Swiper(".houdini-slider", {
+    modules: [Navigation, Autoplay],
+    loop: true,
+    speed: 800,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+    }
+});
+</script>

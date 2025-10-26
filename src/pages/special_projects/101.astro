@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/dior-logo.png';
+import image1 from '../../assets/dior-1.jpg';
+import image2 from '../../assets/dior-2.jpg';
+import image3 from '../../assets/dior-3.jpg';
+import image4 from '../../assets/dior-4.jpg';
+import image5 from '../../assets/dior-5.jpg';
+import image6 from '../../assets/dior-6.jpg';
+import image7 from '../../assets/dior-7.jpg';
+import image8 from '../../assets/dior-8.jpg';
+import Layout from '../../layouts/Layout.astro';
+import TermsConditions from '../../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/101?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="special_projects-template-dior-single-special_projects">
+
+    <section id="special-projects-page" class="dior-special-project">
+        <div id="logo">
+            <Image src={logo} alt="Dior logo" />
+        </div>
+        <div class="grid-gap">
+            <div class="grid-item">
+                <Image src={image1} alt="Dior" />
+            </div>
+            <div class="grid-item">
+                <Image src={image2} alt="Dior" />
+            </div>
+            <div class="grid-item">
+                <Image src={image3} alt="Dior" />
+            </div>
+            <div class="grid-item text-grid">
+                <h1>DIOR CAMPAIGN<br>FALL 2017 COLLECTION<br>FROM<br>MARIA GRAZIA CHIURI.</h1>
+                <p><span>photographer</span><span>BRIGITTE LACOMBE</span></p>
+                <p><span>model</span><span>Jennifer Lawrence</span></p>
+                <p><span>executive producer</span><span>Marie Hu</span></p>
+                <p><span>producer</span><span>Melinda Szepesi</span></p>
+                <p><span>creative director</span><span>Fabien Baron</span></p>
+                <p><span>set designer</span><span>Andy Hillman</span></p>
+                <p><span>art director</span><span>Tom Pataki</span></p>
+                <p><span>construction manager</span><span>Agi Elias</span></p>
+                <p><span>painter</span><span>Rhys Morris</span></p>
+                <h3><span>/2017/</span></h3>
+            </div>
+            <div class="grid-item">
+                <Image src={image4} alt="Dior" />
+            </div>
+            <div class="grid-item">
+                <Image src={image5} alt="Dior" />
+            </div>
+            <div class="grid-item">
+                <Image src={image6} alt="Dior" />
+            </div>
+            <div class="grid-item">
+                <Image src={image7} alt="Dior" />
+            </div>
+            <div class="grid-item">
+                <Image src={image8} alt="Dior" />
+            </div>
+        </div>
+    </section>
+
+    <TermsConditions />
+    
+</Layout>

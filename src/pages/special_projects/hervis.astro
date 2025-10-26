@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TermsConditions from '../../components/TermsConditions.astro';
+let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/77?_embed&acf_format=standard').then((r) => r.json());
+---
+
+<Layout bodyClass="special_projects-template-hervis-single-special_projects">
+
+    <section id="special-projects-page">
+        <img width="100%" src={page.acf.page_content_image} alt="Hervis" style="vertical-align: middle;">
+
+        <div id="video-wrapper" style="padding: 3rem; padding-top: 0; background-color: #00637a;">
+            <iframe src="https://player.vimeo.com/video/257970323?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="width: 100%; height: 30rem;"></iframe>
+        </div>
+    </section>
+
+    <TermsConditions />
+    
+</Layout>

@@ -5447,7 +5447,7 @@ body.search-no-results #search-overlay #searchform .no-results {
   margin-left: -4px;
 }
 .page-template-page-special #main-content #special-projects ul li:not(:last-child):after {
-  content: "â€¢";
+  content: "•";
   display: inline-block;
   font-size: 1rem;
   margin: 0 0.5rem;
@@ -7183,4 +7183,12 @@ img.mfp-img {
 }
 #index-slider-container .swiper-pagination-bullet {
   background: #fff !important;
+}
+
+.dior-special-project .grid-gap .grid-item img,
+#special-projects-page.dior-special-project #logo img {
+    height: auto !important;
+}
+.houdini-slider {
+  overflow-y: hidden;
 }
