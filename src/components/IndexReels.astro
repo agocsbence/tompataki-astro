@@ -18,7 +18,7 @@ const { id, image, director, videoUrl, title, subtitle} = Astro.props;
         <p>directed by
             <span>{director}</span>
         </p>
-        <h2><a href={videoUrl}>{title}</a></h2>
+        <h2><a href={`${videoUrl}?dnt=1`}>{title}</a></h2>
         <div class="play">
                 <img src={id==blackPlay ? playBlack.src : playWhite.src} alt="Play">
             <a href={videoUrl}></a>

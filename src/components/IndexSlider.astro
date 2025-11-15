@@ -18,7 +18,7 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.pr
         <iframe
             class="video showreel player nomargin"
             id={`vimeo_player-${id}`}
-            src={`//player.vimeo.com/video/${shortVimeoId}?api=1&player_id=vimeo_player&autoplay=1&loop=1&color=ffffff&autopause=0&muted=1&background=1`}
+            src={`//player.vimeo.com/video/${shortVimeoId}?api=1&player_id=vimeo_player&autoplay=1&loop=1&color=ffffff&autopause=0&muted=1&background=1&dnt=1`}
             frameborder="0"
             webkitallowfullscreen
             mozallowfullscreen
@@ -34,7 +34,7 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.pr
         <p><span class="title" set:html={title}></span></p>
         <div class="play">
             <img src={playWhite.src} alt="Play">
-            <a href={vimeoUrl}></a>
+            <a href={`${vimeoUrl}?dnt=1`}></a>
         </div>
     </div>
 </div>
