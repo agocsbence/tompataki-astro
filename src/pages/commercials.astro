@@ -11,7 +11,7 @@ let commercials = await fetch('https://cms.tompataki.com/wp-json/wp/v2/commercia
 
     <section id="commercials">
         <h1>{page.title.rendered}</h1>
-        <ul>
+        <ul role="navigation" aria-label="Commercials list">
             {
                 commercials.map((commercial) => 
                     <li class="play">
