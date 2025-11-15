@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Vimeo } from 'astro-embed';
-let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/36?_embed&acf_format=standard').then((r) => r.json());
+let page = await fetch('https://cms.tompataki.com/wp-json/wp/v2/pages/36?_embed&acf_format=standard').then((r) => r.json());
 ---
 
 <Layout bodyClass="page-template-template-showreel" description="my showreel and selected works">

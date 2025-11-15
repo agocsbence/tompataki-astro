@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/625?_embed&acf_format=standard').then((r) => r.json());
+let page = await fetch('https://cms.tompataki.com/wp-json/wp/v2/pages/625?_embed&acf_format=standard').then((r) => r.json());
 ---
 
 <Layout bodyClass="terms-conditions" description="Terms and Conditions of using my website">

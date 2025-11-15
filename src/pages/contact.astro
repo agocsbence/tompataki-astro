@@ -426,7 +426,7 @@ let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/40?_embed&acf_
                     />
                 <path class="st0" d="M393.6,159.7c0,1.1-1.1,2.1-2.2,2.1c-1.1,0-2.1-1-2-2.2c0-1.1,0.8-1.9,2-2
                     C392.6,157.6,393.6,158.6,393.6,159.7z"/>
-                <path class="st0" d="M427.7,105c0,1.1-1,2.2-2.1,2.1c-1.1,0-2.1-1.1-2.1-2.2c0-1,1-2,2-2C426.6,102.9,427.7,103.9,427.7,105z"/>
+                <path id="stockholm" class="st0" d="M427.7,105c0,1.1-1,2.2-2.1,2.1c-1.1,0-2.1-1.1-2.1-2.2c0-1,1-2,2-2C426.6,102.9,427.7,103.9,427.7,105z"/>
                 <path class="st0" d="M425.5,161.8c-1.1,0-2.1-1.1-2-2.2c0.1-1.2,1.1-2,2.3-1.9c1.1,0.1,1.9,1,1.9,2.1
                     C427.7,160.8,426.6,161.9,425.5,161.8z"/>
                 <path class="st0" d="M432.5,157.6c1.2,0.1,2,1,1.9,2.3c-0.1,1.1-1,1.9-2,1.9c-1.1,0-2.1-1.1-2.1-2.2
@@ -4753,8 +4753,73 @@ let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/40?_embed&acf_
     <div id="contact-details" set:html={page.content.rendered}></div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Helper to create popup
+    function createPopup(id, content) {
+        const popup = document.createElement('div');
+        popup.id = id;
+        popup.style.position = 'absolute';
+        popup.style.background = '#fff';
+        popup.style.border = '1px solid #ccc';
+        popup.style.padding = '6px 12px';
+        popup.style.borderRadius = '6px';
+        popup.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+        popup.style.pointerEvents = 'none';
+        popup.style.zIndex = '1000';
+        popup.style.fontSize = '1rem';
+        popup.style.display = 'none';
+        popup.innerHTML = content;
+        document.body.appendChild(popup);
+        return popup;
+    }
+
+    // Create popups
+    const popupRed = createPopup('popup-red', 'Tom Pataki - tompataki@gmail.com - +36 30 123 4567');
+    const popupStockholm = createPopup(
+        'popup-stockholm',
+        `<div>
+            <div>Tove Halkiewicz - tove@ttg.se - +46 709 584 240</div>
+            <div>Anna Helin Wållberg - anna@ttg.se - +46 735 122 610</div>
+        </div>`
+    );
+
+    // Find SVG elements
+    const svg = document.querySelector('#contact-map svg');
+    const red = svg?.querySelector('g#red path');
+    const stockholm = svg?.querySelector('g#world path#stockholm');
+
+    function showPopup(target, popup) {
+        const rect = target.getBoundingClientRect();
+        popup.style.left = `${rect.left + window.scrollX}px`;
+        popup.style.top = `${rect.top + window.scrollY - 40}px`;
+        popup.style.display = 'block';
+    }
+    function hidePopup(popup) {
+        popup.style.display = 'none';
+    }
+
+    if (red) {
+        red.addEventListener('mouseenter', () => showPopup(red, popupRed));
+        red.addEventListener('mouseleave', () => hidePopup(popupRed));
+    }
+    if (stockholm) {
+        stockholm.addEventListener('mouseenter', () => showPopup(stockholm, popupStockholm));
+        stockholm.addEventListener('mouseleave', () => hidePopup(popupStockholm));
+    }
+});
+</script>
+<style>
+#popup-red, #popup-stockholm {
+    transition: opacity 0.15s;
+}
+</style>
+
 </Layout>
 
 <style is:inline>
 h4 a {font-size: 1.3rem !important;}
+.page-template-page-contact #main-content #contact #contact-map svg g#world path#stockholm {
+    fill: #f00 !important;
+}
 </style>

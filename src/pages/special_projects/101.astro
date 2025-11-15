@@ -11,7 +11,7 @@ import image7 from '../../assets/dior-7.jpg';
 import image8 from '../../assets/dior-8.jpg';
 import Layout from '../../layouts/Layout.astro';
 import TermsConditions from '../../components/TermsConditions.astro';
-let page = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects/101?_embed&acf_format=standard').then((r) => r.json());
+let page = await fetch('https://cms.tompataki.com/wp-json/wp/v2/special_projects/101?_embed&acf_format=standard').then((r) => r.json());
 ---
 
 <Layout bodyClass="special_projects-template-dior-single-special_projects">

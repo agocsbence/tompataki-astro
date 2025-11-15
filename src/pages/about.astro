@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TermsConditions from '../components/TermsConditions.astro';
-let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/38?_embed&acf_format=standard').then((r) => r.json());
+let page = await fetch('https://cms.tompataki.com/wp-json/wp/v2/pages/38?_embed&acf_format=standard').then((r) => r.json());
 ---
 
 <Layout bodyClass="page-template-page-about" description="About me and my origins">
@@ -11,9 +11,7 @@ let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/38?_embed&acf_
         <div id="about-content">
             <div id="about-content-text">
                 <p>
-                    <span>Tom</span> IS AN<br>
-                    <span>ART DIRECTOR, PRODUCTION DESIGNER</span><br>
-                    AND <span>PRODUCT DESIGNER.</span>
+                    <span>Tom is an Art Director, Production Designer, and Product Designer.</span>
                     <br>
                     <br>
                     <div class="about-description" set:html={page.content.rendered}></div>
@@ -21,7 +19,5 @@ let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/38?_embed&acf_
             </div>
         </div>
     </section>
-
-    <TermsConditions />
 
 </Layout>

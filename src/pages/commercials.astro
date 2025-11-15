@@ -3,8 +3,8 @@ import playBlack from '../assets/play_black-solid.png';
 import playWhite from '../assets/play_white-solid.png';
 import Layout from '../layouts/Layout.astro';
 import TermsConditions from '../components/TermsConditions.astro';
-let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/31?_embed&acf_format=standard').then((r) => r.json());
-let commercials = await fetch('https://tompataki.com/wp-json/wp/v2/commercials?_embed&per_page=100&acf_format=standard').then((r) => r.json());
+let page = await fetch('https://cms.tompataki.com/wp-json/wp/v2/pages/31?_embed&acf_format=standard').then((r) => r.json());
+let commercials = await fetch('https://cms.tompataki.com/wp-json/wp/v2/commercials?_embed&per_page=100&acf_format=standard').then((r) => r.json());
 ---
 
 <Layout bodyClass="page-template-page-commercials" description="Commercials I was working on">

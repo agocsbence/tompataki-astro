@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TermsConditions from '../components/TermsConditions.astro';
-let page = await fetch('https://tompataki.com/wp-json/wp/v2/pages/34?_embed&acf_format=standard').then((r) => r.json());
-let projects = await fetch('https://tompataki.com/wp-json/wp/v2/special_projects?_embed&per_page=100&acf_format=standard').then((r) => r.json());
+let page = await fetch('https://cms.tompataki.com/wp-json/wp/v2/pages/34?_embed&acf_format=standard').then((r) => r.json());
+let projects = await fetch('https://cms.tompataki.com/wp-json/wp/v2/special_projects?_embed&per_page=100&acf_format=standard').then((r) => r.json());
 ---
 
 <Layout bodyClass="page-template-page-special" description="Special projects I was working on">

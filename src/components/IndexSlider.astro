@@ -12,7 +12,7 @@ interface Props {
 const {id, title, shortVimeoId, director, videoLogo, vimeoUrl} = Astro.props;
 ---
 
-<div class="swiper-slide" style={`background-image: url();`}>
+<div class="swiper-slide" style={`background-image: url('https://vumbnail.com/${shortVimeoId}_large.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;`}>
     <iframe
         class="video showreel player nomargin"
         id={`vimeo_player-${id}`}
@@ -35,3 +35,12 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl} = Astro.props;
         </div>
     </div>
 </div>
+
+<style>
+.index-slider-info:hover {
+    img, .play {
+        transform: scale(1.05);
+        transition: transform .3s ease;
+    }
+}
+</style>
