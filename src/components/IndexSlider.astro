@@ -3,32 +3,35 @@ import playWhite from '../assets/play_white.png';
 interface Props {
     id: string;
     title: string;
-    shortVimeoId: string;
+    shortVimeoId?: string;
 	director: string;
 	videoLogo: string;
     vimeoUrl: string;
+    muxId?: string;
 }
 
-const {id, title, shortVimeoId, director, videoLogo, vimeoUrl} = Astro.props;
+const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.props;
 ---
 
 <div class="swiper-slide" style={`background-image: url('https://vumbnail.com/${shortVimeoId}_large.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;`}>
-    <iframe
-        class="video showreel player nomargin"
-        id={`vimeo_player-${id}`}
-        src={`//player.vimeo.com/video/${shortVimeoId}?api=1&player_id=vimeo_player&autoplay=1&loop=1&color=ffffff&autopause=0&muted=1&background=1`}
-        frameborder="0"
-        webkitallowfullscreen
-        mozallowfullscreen
-        allowfullscreen
-        allow="autoplay"
-        data-ready="true"
-        loading="eager"
-    ></iframe>
+    {
+        <iframe
+            class="video showreel player nomargin"
+            id={`vimeo_player-${id}`}
+            src={`//player.vimeo.com/video/${shortVimeoId}?api=1&player_id=vimeo_player&autoplay=1&loop=1&color=ffffff&autopause=0&muted=1&background=1`}
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+            allow="autoplay"
+            data-ready="true"
+            loading="eager"
+        ></iframe>
+    }
     <div class="index-slider-info">
         <p><span>director </span>{director}</p>
         <img src={videoLogo} alt={title} loading="lazy" />
-        <p><span class="title">{title}</span></p>
+        <p><span class="title" set:html={title}></span></p>
         <div class="play">
             <img src={playWhite.src} alt="Play">
             <a href={vimeoUrl}></a>

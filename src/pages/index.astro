@@ -43,7 +43,8 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
 							shortVimeoId={slide.acf.short_vimeo_id}
 							director={slide.acf.director}
 							videoLogo={slide.acf.video_logo}
-							vimeoUrl={slide.acf.vimeo_url} />
+							vimeoUrl={slide.acf.vimeo_url}
+                            muxId={slide.acf.mux_id} />
 					)
 				} 
             </div>
@@ -81,7 +82,7 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
 
                         <div class="swiper-slide">
                             <div class="news-list-item">
-                                <div class="image" style={`background-image: url(${post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url});`}></div>
+                                <div class="image" style={`background-image: url(${post._embedded['wp:featuredmedia'][0].source_url});`}></div>
                                 <div class="text">
                                     <div class="news-category">
                                         <span>{post.acf.category}</span>
