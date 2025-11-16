@@ -145,23 +145,27 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
                 preventClicksPropagation: false,
                 slideActiveClass: 'slider-video-active',
                 loop: true,
+                watchSlidesProgress: false,
                 autoplay: {
                     delay: 4000,
                     disableOnInteraction: false,
                 },
                 on: {
-                    transitionStart: function() {
-                        var activeSlide = document.getElementsByClassName("slider-video-active");
-                        var activeId = document.getElementById(activeSlide[0].childNodes[1].id);
-                        activeId.pause();
-                        activeId.currentTime = 0;
-                    },
-                    transitionEnd: function() {
-                        var activeSlide = document.getElementsByClassName("slider-video-active");
-                        var activeId = document.getElementById(activeSlide[0].childNodes[1].id);
-                        activeId.play();
+                    slideChange: function() {
+                        // Pause all iframes
+                        const videos = document.querySelectorAll(".swiper-slide iframe");
+                        videos.forEach(v => {
+                            if (v.pause) v.pause();
+                        });
+
+                        // Play only the iframe inside the active slide
+                        const activeSlide = document.getElementsByClassName("slider-video-active")[0];
+                        if (activeSlide) {
+                            const iframe = activeSlide.querySelector("iframe");
+                            if (iframe && iframe.play) iframe.play();
+                        }
                     }
-                },
+                },                
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -173,7 +177,6 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
                 }
             });
         }
-
     });
 
     const newsSwiper = new Swiper('#news-list', {
