@@ -152,13 +152,11 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
                 },
                 on: {
                     slideChange: function() {
-                        // Pause all iframes
                         const videos = document.querySelectorAll(".swiper-slide iframe");
                         videos.forEach(v => {
                             if (v.pause) v.pause();
                         });
 
-                        // Play only the iframe inside the active slide
                         const activeSlide = document.getElementsByClassName("slider-video-active")[0];
                         if (activeSlide) {
                             const iframe = activeSlide.querySelector("iframe");
