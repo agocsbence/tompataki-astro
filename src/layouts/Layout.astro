@@ -16,6 +16,16 @@ import Footer from '../components/Footer.astro';
 
 		<script is:inline src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     	<script is:inline src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+		<script is:inline>
+			function mobileMenu() {
+				var x = document.getElementById("mobile-navbar");
+				if (x.className === "mobile-nav") {
+					x.className += " show";
+				} else {
+					x.className = "mobile-nav";
+				}
+			}
+		</script>
 
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={`Tom Pataki - ${description}`} />
@@ -43,6 +53,14 @@ import Footer from '../components/Footer.astro';
 </style>
 
 <script is:inline>
+	function mobileMenu() {
+        var x = document.getElementById("mobile-navbar");
+        if (x.className === "mobile-nav") {
+            x.className += " show";
+        } else {
+            x.className = "mobile-nav";
+        }
+    }
 	$(document).ready(function() {
 	//play embedded Vimeo video
 	$('.play').each(function (index, element) {

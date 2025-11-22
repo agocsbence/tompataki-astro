@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "tompataki-astro",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@mux/mux-video": "^0.27.2",
     "astro": "^5.14.1",
     "astro-embed": "^0.9.1",
     "astro-pagefind": "^1.8.5",
