@@ -1,0 +1,1 @@
+import{S as e,N as a,A as t}from"./autoplay.9-3lZ8mj.js";new e(".houdini-slider",{modules:[a,t],loop:!0,speed:800,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},autoplay:{delay:4e3,disableOnInteraction:!1}});
