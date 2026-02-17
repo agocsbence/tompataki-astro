@@ -31,18 +31,18 @@ import logoBlack from '../assets/logo-black.png';
                         <li id="menu-item-60" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
-                <!-- <img src={searchIcon.src} alt="Search" id="searchButton"> -->
+                <img src={searchIcon.src} alt="Search" id="searchButton">
             </div>
 
         </div>
     </section>
     <div id="search-overlay">
         <div id="search-overlay-wrapper">
-            <span>X</span>
-            <form role="search" method="get" id="searchform" action="">
+            <span id="searchClose">X</span>
+            <form role="search" method="get" id="searchform" action="/search">
                 <div>
-                    <label for="s">Search anything and hit enter</label>
-                    <input type="text" value="" name="s" id="s" placeholder="Search" />
+                    <label for="q">Search anything and hit enter</label>
+                    <input type="text" value="" name="q" id="q" placeholder="Search" />
                     <input type="submit" id="searchsubmit" value="Search" class="button" />
                 </div>
             </form>
@@ -72,3 +72,37 @@ import logoBlack from '../assets/logo-black.png';
 
         </div>
     </section>
+
+<script>
+  const btn = document.getElementById("searchButton");
+  const overlay = document.getElementById("search-overlay");
+  const close = document.getElementById("searchClose");
+  const input = document.getElementById("s") || document.getElementById("q");
+
+  function openSearch() {
+    overlay?.classList.add("is-open");
+    // kis delay, hogy a megjelenés után fókuszáljon
+    setTimeout(() => input?.focus(), 50);
+  }
+  function closeSearch() {
+    overlay?.classList.remove("is-open");
+  }
+
+  btn?.addEventListener("click", openSearch);
+  close?.addEventListener("click", closeSearch);
+
+  // kattintás overlay háttérre zárjon (ha a wrapperen kívül kattintasz)
+  overlay?.addEventListener("click", (e) => {
+    if (e.target === overlay) closeSearch();
+  });
+
+  // ESC zár
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSearch();
+  });
+</script>
+
+<style>
+#search-overlay { display: none; }
+#search-overlay.is-open { display: block; }
+</style>
