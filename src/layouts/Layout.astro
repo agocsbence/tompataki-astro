@@ -10,12 +10,10 @@ import Footer from '../components/Footer.astro';
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
 
-		<script is:inline src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    	<script is:inline src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 		<script is:inline>
 			function mobileMenu() {
 				var x = document.getElementById("mobile-navbar");
@@ -53,84 +51,64 @@ import Footer from '../components/Footer.astro';
 </style>
 
 <script is:inline>
-	function mobileMenu() {
-        var x = document.getElementById("mobile-navbar");
-        if (x.className === "mobile-nav") {
-            x.className += " show";
-        } else {
-            x.className = "mobile-nav";
-        }
-    }
-	$(document).ready(function() {
-	//play embedded Vimeo video
-	$('.play').each(function (index, element) {
-	    var href = $(element).find('a').attr('href');
-	    $(element).magnificPopup({
-	        items: {
-	            src: href
-	        },
-	        type: 'iframe'
-	    });
-	});
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		$('.grid-details h2').each(function (index, element) {
-		    var href = $(element).find('a').attr('href');
-		    $(element).magnificPopup({
-		        items: {
-		            src: href
-		        },
-		        type: 'iframe'
-		    });
+function mobileMenu() {
+	var x = document.getElementById("mobile-navbar");
+	if (x.className === "mobile-nav") {
+		x.className += " show";
+	} else {
+		x.className = "mobile-nav";
+	}
+}
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	$('.grid-details h2').each(function (index, element) {
+		var href = $(element).find('a').attr('href');
+		$(element).magnificPopup({
+			items: {
+				src: href
+			},
+			type: 'iframe'
 		});
-		$('.featured-film-info .play').each(function (index, element) {
-		    var href = $(element).find('a').attr('href');
-		    $(element).magnificPopup({
-		        items: {
-		            src: href
-		        },
-		        type: 'iframe'
-		    });
-		});
-	}
-	//VIMEO VIDEO FULLSCREEN
-	var video = $('#vimeo-video');
-	if (video.requestFullscreen) {
-	  video.requestFullscreen();
-	}
-	//TOGGLE SEARCH OVERLAY
-	$('#searchButton').on('click', function(){
-	    $('#search-overlay').removeClass('hide');
-	    $('#search-overlay').addClass('show');
 	});
-	$('#search-overlay span').on('click', function(){
-	    $('#search-overlay').removeClass('show');
-	    $('#search-overlay').addClass('hide');
-	});
+}
+//VIMEO VIDEO FULLSCREEN
+var video = $('#vimeo-video');
+if (video.requestFullscreen) {
+	video.requestFullscreen();
+}
+//TOGGLE SEARCH OVERLAY
+$('#searchButton').on('click', function(){
+	$('#search-overlay').removeClass('hide');
+	$('#search-overlay').addClass('show');
+});
+$('#search-overlay span').on('click', function(){
+	$('#search-overlay').removeClass('show');
+	$('#search-overlay').addClass('hide');
+});
 
-	//NO RESULTS PAGE
-	if( $('body').hasClass('search-no-results') ) {
-		$('#searchform').append('<h3 class="no-results">No results</h3>');
-		$('#search-overlay-wrapper span').on('click', function() {
-			window.location.replace('http://tompataki.com');
-		})
+//NO RESULTS PAGE
+if( $('body').hasClass('search-no-results') ) {
+	$('#searchform').append('<h3 class="no-results">No results</h3>');
+	$('#search-overlay-wrapper span').on('click', function() {
+		window.location.replace('http://tompataki.com');
+	})
+}
+
+//STICKY NAVBAR
+var stickyNavTop = $('#navbar').offset().top;
+
+var stickyNav = function(){
+	var scrollTop = $(window).scrollTop();
+	if (scrollTop > stickyNavTop) { 
+		$('#navbar').addClass('sticky');
+	} else {
+		$('#navbar').removeClass('sticky'); 
 	}
+};
 
-	//STICKY NAVBAR
-   	var stickyNavTop = $('#navbar').offset().top;
-   	
-   	var stickyNav = function(){
-	    var scrollTop = $(window).scrollTop();
-	    if (scrollTop > stickyNavTop) { 
-	        $('#navbar').addClass('sticky');
-	    } else {
-	        $('#navbar').removeClass('sticky'); 
-	    }
-	};
+stickyNav();
 
+$(window).scroll(function() {
 	stickyNav();
-	
-	$(window).scroll(function() {
-		stickyNav();
-	});
 });
 </script>

@@ -15,8 +15,9 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
         <div id="mobile-index-slider-container">
             <div class="swiper-wrapper">
 				{
-					slides.map((slide) => 
+					slides.map((slide, i) => 
 						<IndexSliderMobile
+                            priority={i === 0}
 							title={slide.title.rendered}
 							image={slide.acf.mobile_slider_image}
 							director={slide.acf.director}
