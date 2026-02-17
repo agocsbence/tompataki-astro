@@ -366,9 +366,9 @@ ul {
   color: #fff;
   font-size: 2rem;
 }
-.play img {
+/* .play img {
   width: 2.8rem;
-}
+} */
 #signup {
   text-align: center;
   margin-top: 3rem;
@@ -1119,9 +1119,9 @@ body.search-no-results #search-overlay #searchform .no-results {
     margin: 0;
     margin-bottom: 1rem;
   }
-  #main-content #featured-films .featured-film .featured-film-info .play img {
+  /* #main-content #featured-films .featured-film .featured-film-info .play img {
     width: 2rem !important;
-  }
+  } */
   #main-content #featured-films .featured-film .featured-film-details {
     position: relative;
     height: auto;
@@ -5941,9 +5941,9 @@ body.page-template-page-featured #main-content #featured-films .featured-film .f
   font-size: 0.6rem;
   letter-spacing: 5px;
 }
-body.page-template-page-featured #main-content #featured-films .featured-film .featured-film-info .play img {
+/* body.page-template-page-featured #main-content #featured-films .featured-film .featured-film-info .play img {
   width: 3rem !important;
-}
+} */
 body.page-template-page-featured #main-content #featured-films .featured-film .featured-film-details img {
   width: 100%;
   height: auto;
@@ -6150,9 +6150,9 @@ body.home #main-content #index-slider #index-slider-container .swiper-wrapper .s
   max-height: 6rem;
   margin: 1rem 0;
 }
-body.home #main-content #index-slider #index-slider-container .swiper-wrapper .swiper-slide .index-slider-info .play img {
+/* body.home #main-content #index-slider #index-slider-container .swiper-wrapper .swiper-slide .index-slider-info .play img {
   width: 3rem;
-}
+} */
 body.home #main-content #index-slider #index-slider-container .swiper-pagination .swiper-pagination-bullet {
   margin: 0 0.6rem !important;
 }
@@ -6234,9 +6234,9 @@ body.home #main-content #mobile-index-slider #mobile-index-slider-container .swi
   max-height: 6rem;
   margin: 1rem 0;
 }
-body.home #main-content #mobile-index-slider #mobile-index-slider-container .swiper-wrapper .swiper-slide .index-slider-info .play img {
+/* body.home #main-content #mobile-index-slider #mobile-index-slider-container .swiper-wrapper .swiper-slide .index-slider-info .play img {
   width: 3rem;
-}
+} */
 body.home #main-content #mobile-index-slider #mobile-index-slider-container .swiper-button-next,
 body.home #main-content #mobile-index-slider #mobile-index-slider-container .swiper-button-prev {
   top: -webkit-calc(100vh - 8rem);

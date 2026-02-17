@@ -17,7 +17,7 @@ const {title, image, director, videoLogo, vimeoUrl} = Astro.props;
         <img src={videoLogo} alt={title} loading="lazy" />
         <p><span class="title">{title}</span></p>
         <div class="play">
-            <img src={playWhite.src} alt="Play">
+            <img src={playWhite.src} alt="Play" width="32" height="32">
             <a href={vimeoUrl}></a>
         </div>
     </div>

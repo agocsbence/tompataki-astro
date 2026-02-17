@@ -33,7 +33,7 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.pr
         <img src={videoLogo} alt={title} loading="lazy" />
         <p><span class="title" set:html={title}></span></p>
         <div class="play">
-            <img src={playWhite.src} alt="Play">
+            <img src={playWhite.src} alt="Play" width="53" height="53">
             <a href={`${vimeoUrl}?dnt=1`}></a>
         </div>
     </div>

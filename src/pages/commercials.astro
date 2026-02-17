@@ -36,13 +36,13 @@ let commercials = await fetch('https://cms.tompataki.com/wp-json/wp/v2/commercia
                                     { commercial.id == 134 || commercial.id == 122 ?
 
                                         <a href={commercial.acf.commercial_video_url}>
-                                            <img src={playBlack.src} alt="Play">
+                                            <img src={playBlack.src} alt="Play" width="45" height="45">
                                         </a>
 
                                         :
 
                                         <a href={commercial.acf.commercial_video_url}>
-                                            <img src={playWhite.src} alt="Play">
+                                            <img src={playWhite.src} alt="Play" width="45" height="45">
                                         </a>
                                     }
 
