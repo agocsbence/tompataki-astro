@@ -1,20 +1,19 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel";
 
-// https://astro.build/config
-// astro.config.mjs
 export default defineConfig({
-  vite: {
-    server: { fs: { allow: [process.cwd()] } },
+  image: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cms.tompataki.com",
+        pathname: "/**",
+      },
+    ],
   },
 
-  devOptions: {
-    disableDevServer: false,
-    open: false,
-    port: 3000,
-    hmr: true
-  },
-
-  adapter: vercel(),
+  adapter: vercel({
+    imageService: true,
+  }),
 });
