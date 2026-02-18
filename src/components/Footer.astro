@@ -1,6 +1,7 @@
 ---
 import instagramIcon from '../assets/vimeo.svg';
 import vimeoIcon from '../assets/instagram.svg';
+import { Image } from "astro:assets";
 ---
 <section id="footer">
     <span class="copyright">©Tom Pataki All rights reserved.</span>
@@ -9,12 +10,12 @@ import vimeoIcon from '../assets/instagram.svg';
         <ul>
             <li>
                 <a href="https://vimeo.com/user11416108" target="blank">
-                    <img src={vimeoIcon.src} alt="Tom Pataki Vimeo" width="13" height="13">
+                    <Image src={vimeoIcon.src} alt="Tom Pataki Vimeo" width="13" height="13" sizes="(max-width: 30px) 13px, 13px" loading="lazy" />
                 </a>
             </li>
             <li>
                 <a href="https://www.instagram.com/tompataki/" target="blank">
-                    <img src={instagramIcon.src} alt="Tom Pataki Instagram" width="13" height="13">
+                    <Image src={instagramIcon.src} alt="Tom Pataki Instagram" width="13" height="13" sizes="(max-width: 30px) 13px, 13px" loading="lazy" />
                 </a>
             </li>
         </ul>

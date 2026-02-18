@@ -2,6 +2,7 @@
 import loadIcon from '../assets/load.gif';
 import searchIcon from '../assets/search.svg';
 import logoBlack from '../assets/logo-black.png';
+import { Image } from "astro:assets";
 
 ---
 
@@ -14,7 +15,7 @@ import logoBlack from '../assets/logo-black.png';
     <section id="header">
         <div id="headline">
             <a href="/">
-                <img src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18">
+                <Image src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18" sizes="(max-width: 250px) 180px, 192px" loading="lazy" />
             </a>
             <span>EN | HU</span>
         </div>
@@ -51,7 +52,7 @@ import logoBlack from '../assets/logo-black.png';
     <section id="mobile-header">
         <div id="logo">
             <a href="/">
-                <img src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18">
+                <Image src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18" sizes="(max-width: 250px) 180px, 192px" loading="lazy" />
             </a>
         </div>
         <div id="menu">

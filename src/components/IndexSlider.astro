@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import playWhite from '../assets/play_white.png';
 interface Props {
     id: string;
@@ -30,10 +31,10 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.pr
     }
     <div class="index-slider-info">
         <p><span>director </span>{director}</p>
-        <img src={videoLogo} alt={title} loading="lazy" />
+        <Image src={videoLogo} alt={title} width="800" height="100" sizes="(max-width: 1000px) 500px, 800px" loading="lazy" />
         <p><span class="title" set:html={title}></span></p>
         <div class="play">
-            <img src={playWhite.src} alt="Play" width="53" height="53">
+            <Image src={playWhite.src} alt="Play" width="53" height="53" sizes="(max-width: 55px) 53px, 53px" loading="lazy" />
             <a href={`${vimeoUrl}?dnt=1`}></a>
         </div>
     </div>

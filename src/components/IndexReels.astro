@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import playBlack from '../assets/play_black-solid.png';
 import playWhite from '../assets/play_white-solid.png';
 interface Props {
@@ -20,7 +21,7 @@ const { id, image, director, videoUrl, title, subtitle} = Astro.props;
         </p>
         <h2><a href={`${videoUrl}?dnt=1`}>{title}</a></h2>
         <div class="play">
-                <img src={id==blackPlay ? playBlack.src : playWhite.src} alt="Play" width="45" height="45">
+                <Image src={id==blackPlay ? playBlack.src : playWhite.src} alt="Play" width="45" height="45" sizes="(max-width: 50px) 45px, 45px" loading="lazy" />
             <a href={videoUrl}></a>
         </div>
         <p>{subtitle}</p>

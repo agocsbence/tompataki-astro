@@ -27,7 +27,7 @@ let projects = await fetch('https://cms.tompataki.com/wp-json/wp/v2/special_proj
                         <div class="play"> 
                             <div class={`grid-item special-project-id-${project.id}`} style={`--aspect-ratio: 16/9.8; background-image: url(${project._embedded['wp:featuredmedia'][0].source_url});`}>
                                 <div class="project-logo">
-                                    <img src={project.acf.logo} alt="logo" />
+                                    <Image src={project.acf.logo} alt="logo" width="410" height="253" sizes="(max-width: 410px) 410px, 410px" loading="lazy" />
                                 </div>
                                 <div class="grid-item-overlay" style={`background-image: url(${project.acf.overlay_image})`}></div>
                             </div>
@@ -36,7 +36,7 @@ let projects = await fetch('https://cms.tompataki.com/wp-json/wp/v2/special_proj
                     :
                         <a href={project.id == 78 ? '#' : `/special_projects/${project.slug}`} class={`grid-item special-project-id-${project.id}`} style={`--aspect-ratio: 16/9.8; background-image: url(${project._embedded['wp:featuredmedia'][0].source_url});`}>
                             <div class="project-logo">
-                                <img src={project.acf.logo} alt="logo" />
+                                <Image src={project.acf.logo} alt="logo" width="410" height="253" sizes="(max-width: 410px) 410px, 410px" loading="lazy" />
                             </div>
                             <div class="grid-item-overlay" style={`background-image: url(${project.acf.overlay_image})`}></div>
                         </a>
