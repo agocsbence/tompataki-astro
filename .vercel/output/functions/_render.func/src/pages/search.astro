@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import VimeoLightbox from "../components/VimeoLightbox.astro";
 export const prerender = false;
 
 const q = new URL(Astro.request.url).searchParams.get("q")?.trim() ?? "";
@@ -113,24 +114,24 @@ if (q.length >= 2) {
       <div id="search-results-wrapper" class="grid-gap">
         {results.map((r) => (
           <div class={`search-result grid-item ${r.hasVimeo ? "play" : ""}`}>
-            <a href={`${r.hasVimeo ? r.href : r.path}`}>
-              <div
-                class="thumbnail"
-                style={r.image ? `background-image: url(${r.image})` : ""}
-                aria-label={r.title}
-              ></div>
+            <VimeoLightbox url={`${r.hasVimeo ? r.href : r.path}`}>
+                <div
+                  class="thumbnail"
+                  style={r.image ? `background-image: url(${r.image})` : ""}
+                  aria-label={r.title}
+                ></div>
 
-              <div class="details">
-                <h2>{r.title}</h2>
-                {r.subtitle && <p class="subtitle">{r.subtitle}</p>}
-                {r.directedBy && (
-                  <p>
-                    DIRECTOR <span>{r.directedBy}</span>
-                  </p>
-                )}
-                <div class="type">{r.typeLabel}</div>
-              </div>
-            </a>
+                <div class="details">
+                  <h2>{r.title}</h2>
+                  {r.subtitle && <p class="subtitle">{r.subtitle}</p>}
+                  {r.directedBy && (
+                    <p>
+                      DIRECTOR <span>{r.directedBy}</span>
+                    </p>
+                  )}
+                  <div class="type">{r.typeLabel}</div>
+                </div>
+            </VimeoLightbox>
           </div>
         ))}
       </div>
