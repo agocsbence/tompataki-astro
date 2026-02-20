@@ -13,7 +13,7 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
 <Layout bodyClass="home" description="Newest projects, reels, and related news about me">
 	<div id="mobile-index-slider" class="mobile-only">
         <h2>Newest projects</h2>
-        <div id="mobile-index-slider-container">
+        <div id="mobile-index-slider-container" class="swiper">
             <div class="swiper-wrapper">
 				{
 					slides.map((slide, i) => 
@@ -113,82 +113,9 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
 </Layout>
 
 <script>
-    import Swiper from 'swiper';
-    import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-    import 'swiper/css';
-    import 'swiper/css/navigation';
-    import 'swiper/css/pagination';
-    import 'swiper/css/autoplay';
+  import { initIndexSwipers } from "../scripts/index-swipers.js";
 
-    document.addEventListener( 'DOMContentLoaded', function() {
-
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-            const hero_mobile_swiper = new Swiper("#mobile-index-slider-container", {
-                modules: [Navigation, Pagination, Autoplay],
-                loop: true,
-                speed: 800,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    // dynamicBullets: true,
-                    clickable: true,
-                }
-            });
-        } else {
-            const hero_swiper = new Swiper("#index-slider-container", {
-                modules: [Navigation, Pagination, Autoplay],
-                speed: 800,
-                preventClicks: false,
-                preventClicksPropagation: false,
-                slideActiveClass: 'slider-video-active',
-                loop: true,
-                watchSlidesProgress: false,
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false,
-                },
-                on: {
-                    slideChange: function() {
-                        const videos = document.querySelectorAll(".swiper-slide iframe");
-                        videos.forEach(v => {
-                            if (v.pause) v.pause();
-                        });
-
-                        const activeSlide = document.getElementsByClassName("slider-video-active")[0];
-                        if (activeSlide) {
-                            const iframe = activeSlide.querySelector("iframe");
-                            if (iframe && iframe.play) iframe.play();
-                        }
-                    }
-                },                
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    // dynamicBullets: true,
-                    clickable: true,
-                }
-            });
-        }
-    });
-
-    const newsSwiper = new Swiper('#news-list', {
-        modules: [Navigation],
-        loop: false,
-        slidesPerView: 3,
-        spaceBetween: 32,
-        navigation: {
-            nextEl: '.nextB',
-            prevEl: '.prevB',
-        }
-    });
+  document.addEventListener("DOMContentLoaded", () => {
+    initIndexSwipers();
+  });
 </script>

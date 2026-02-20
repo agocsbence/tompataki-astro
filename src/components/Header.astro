@@ -3,15 +3,6 @@ import loadIcon from '../assets/load.gif';
 import searchIcon from '../assets/search.svg';
 import logoBlack from '../assets/logo-black.png';
 import { Image } from "astro:assets";
-
-const NAV = [
-  { href: "/feature-films", label: "Feature films / Series" },
-  { href: "/commercials", label: "Commercials" },
-  { href: "/special-projects", label: "Special projects" },
-  { href: "/showreel", label: "Showreel" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
 ---
 
 <!-- <div class="preloader-wrapper">
@@ -20,57 +11,37 @@ const NAV = [
   </div>
 </div> -->
 
-<header id="site-header">
+<section id="header">
   <div id="headline">
-    <a href="/" class="brand" aria-label="Home">
-      <Image
-        src={logoBlack.src}
-        alt="Tom Pataki logo"
-        width="192"
-        height="18"
-        sizes="(max-width: 250px) 180px, 192px"
-        loading="lazy"
-        class="brand-logo"
-      />
+    <a href="/">
+      <Image src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18" sizes="(max-width: 250px) 180px, 192px" loading="lazy" />
     </a>
-
-    <span class="lang">EN | HU</span>
-
-    <!-- Mobil hamburger (desktopon rejtve) -->
-    <button
-      id="hamburger"
-      class="hamburger"
-      type="button"
-      aria-label="Open menu"
-      aria-controls="navbar"
-      aria-expanded="false"
-    >
-      <span class="hamburger-lines" aria-hidden="true"></span>
-    </button>
+    <span>EN | HU</span>
   </div>
 
-  <nav id="navbar" aria-label="Primary navigation">
+  <div id="navbar">
     <div id="navbar-wrapper">
       <div class="menu-main-menu-container">
         <ul id="menu-main-menu" class="menu">
-          {NAV.map((item) => (
-            <li class="menu-item">
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))}
+          <li id="menu-item-265" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="/feature-films">Feature films / Series</a></li>
+          <li id="menu-item-64" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-64"><a href="/commercials">Commercials</a></li>
+          <li id="menu-item-63" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-63"><a href="/special-projects">Special projects</a></li>
+          <li id="menu-item-62" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="/showreel">Showreel</a></li>
+          <li id="menu-item-61" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-61"><a href="/about">About</a></li>
+          <li id="menu-item-60" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="/contact">Contact</a></li>
         </ul>
       </div>
 
-      <!-- Desktop search ikon (mobilon CSS-sel rejtve) -->
-      <img src={searchIcon.src} alt="Search" id="searchButton" width="16" height="16" class="search-icon">
+      <!-- desktopon marad -->
+      <img src={searchIcon.src} alt="Search" id="searchButton" width="16" height="16">
     </div>
-  </nav>
-</header>
+  </div>
+</section>
 
-<!-- Search overlay: desktopon működik, mobilon CSS-sel rejtve -->
-<div id="search-overlay" aria-hidden="true">
+<!-- desktopon marad (mobilon CSS-sel elrejtjük) -->
+<div id="search-overlay">
   <div id="search-overlay-wrapper">
-    <span id="searchClose" role="button" tabindex="0" aria-label="Close search">X</span>
+    <span id="searchClose">X</span>
     <form role="search" method="get" id="searchform" action="/search">
       <div>
         <label for="q">Search anything and hit enter</label>
@@ -81,188 +52,217 @@ const NAV = [
   </div>
 </div>
 
+<!-- MOBIL HEADER: nincs duplikált <ul>, csak egy üres konténer, amit JS feltölt -->
+<section id="mobile-header">
+  <div id="logo">
+    <a href="/">
+      <Image src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18" sizes="(max-width: 250px) 180px, 192px" loading="lazy" />
+    </a>
+  </div>
+
+  <div id="menu">
+    <button
+      type="button"
+      id="mobileMenuButton"
+      class="mobile-menu-btn"
+      aria-label="Open menu"
+      aria-controls="mobile-navbar"
+      aria-expanded="false"
+    >
+      &#9776;
+    </button>
+  </div>
+
+  <!-- EZ a lenyíló rész: ide klónozzuk a desktop menüt -->
+  <div id="mobile-navbar" class="mobile-nav" aria-hidden="true">
+    <div class="menu-main-menu-container" id="mobile-menu-container"></div>
+  </div>
+</section>
+
 <script is:inline>
-  // Mobil menü toggle (minimál JS)
-  const header = document.getElementById("site-header");
-  const hamburger = document.getElementById("hamburger");
-  const navbar = document.getElementById("navbar");
+  const isMobile = () => window.matchMedia("(max-width: 991px)").matches;
 
-  const setMenuOpen = (open) => {
-    header?.classList.toggle("is-menu-open", open);
-    hamburger?.setAttribute("aria-expanded", open ? "true" : "false");
-    document.documentElement.classList.toggle("menu-open", open);
-    document.body.classList.toggle("menu-open", open);
-  };
+  window.addEventListener("DOMContentLoaded", () => {
+    const mobileBtn = document.getElementById("mobileMenuButton");
+    const mobileNav = document.getElementById("mobile-navbar");
+    const mobileContainer = document.getElementById("mobile-menu-container");
+    const desktopMenu = document.getElementById("menu-main-menu");
 
-  hamburger?.addEventListener("click", () => {
-    const open = !header?.classList.contains("is-menu-open");
-    setMenuOpen(open);
-  });
+    if (!mobileBtn || !mobileNav || !mobileContainer || !desktopMenu) return;
 
-  // linkre kattintva zárjuk a menüt mobilon
-  navbar?.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => setMenuOpen(false));
-  });
+    function ensureMobileMenuBuilt() {
+        if (mobileContainer.dataset.built === "true") return;
 
-  // ESC zár
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setMenuOpen(false);
-  });
+        const clone = desktopMenu.cloneNode(true);
 
-  // Desktop search (mobilon eleve rejtve)
-  const btn = document.getElementById("searchButton");
-  const overlay = document.getElementById("search-overlay");
-  const close = document.getElementById("searchClose");
-  const input = document.getElementById("s") || document.getElementById("q");
+        // Ne legyen duplikált ID a DOM-ban
+        clone.removeAttribute("id");
+        clone.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
 
-  function openSearch() {
-    overlay?.classList.add("is-open");
-    overlay?.setAttribute("aria-hidden", "false");
-    setTimeout(() => input?.focus(), 50);
-  }
-  function closeSearch() {
-    overlay?.classList.remove("is-open");
-    overlay?.setAttribute("aria-hidden", "true");
-  }
+        // KRITIKUS: szedd le a desktop/WP classokat, amik mobilon elrejthetik
+        clone.className = "mobile-menu-list";
 
-  btn?.addEventListener("click", openSearch);
-  close?.addEventListener("click", closeSearch);
-  close?.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") closeSearch();
-  });
+        // Biztos, ami biztos: list-style reset
+        clone.setAttribute("role", "list");
 
-  overlay?.addEventListener("click", (e) => {
-    if (e.target === overlay) closeSearch();
-  });
+        mobileContainer.appendChild(clone);
+        mobileContainer.dataset.built = "true";
+    }
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeSearch();
+    function setOpen(open) {
+      mobileNav.classList.toggle("is-open", open);
+      mobileBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      mobileNav.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+
+    mobileBtn.addEventListener("click", () => {
+      if (!isMobile()) return;
+      ensureMobileMenuBuilt();
+      setOpen(!mobileNav.classList.contains("is-open"));
+    });
+
+    mobileNav.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) setOpen(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (!isMobile()) setOpen(false);
+    });
   });
 </script>
 
 <style>
+  /* desktop search overlay kezelése (a meglévő logikád) */
+  #search-overlay { display: none; }
+  #search-overlay.is-open { display: block; }
+
   /* =========================
-     Alap: 1 navbar, nincs duplikáció
+     MOBIL FIXEK CSAK MOBILON
+     Desktop CSS-t nem bántjuk
      ========================= */
-
-  /* Logo torzítás nélkül */
-  .brand-logo {
-    height: 18px;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  /* Hamburger gomb */
-  .hamburger {
-    display: none; /* desktopon rejtve */
-    appearance: none;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 10px;
-    line-height: 0;
-  }
-  .hamburger:hover {
-    background: rgba(0,0,0,0.05);
-  }
-
-  .hamburger-lines {
-    display: inline-block;
-    width: 20px;
-    height: 2px;
-    background: #111;
-    position: relative;
-    border-radius: 999px;
-  }
-  .hamburger-lines::before,
-  .hamburger-lines::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 20px;
-    height: 2px;
-    background: #111;
-    border-radius: 999px;
-  }
-  .hamburger-lines::before { top: -6px; }
-  .hamburger-lines::after  { top:  6px; }
-
-  /* Mobilon nincs search ikon + overlay */
   @media screen and (max-width: 991px) {
-    .lang { display: none; }              /* ha mobilon nem kell */
-    .search-icon { display: none !important; }
+    /* mobilon nincs search ikon és overlay */
+    #searchButton { display: none !important; }
     #search-overlay { display: none !important; }
 
-    /* Headline: bal logo, jobb hamburger */
-    #headline {
+    /* mobil header layout: logo bal, hamburger jobb */
+    #mobile-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 3rem;
       line-height: 3rem;
-      gap: 12px;
       padding: 0 1rem;
     }
-
-    .hamburger { display: inline-flex; }
-
-    /* A desktop navbar wrappered jelenleg sok mindent csinál.
-       Mobilon a nav legyen "lenyíló" blokk, ne duplázódjon. */
-    #navbar {
-      display: none;
-      padding: 0.5rem 0;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      background: #fff;
+    #mobile-header {
+        position: relative;
+        z-index: 1500;
     }
 
-    /* amikor nyitva van */
-    #site-header.is-menu-open #navbar {
+    /* logo ne torzuljon */
+    #mobile-header #logo img {
+      height: 2rem;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
       display: block;
     }
 
-    /* Menü elemek egymás alatt */
-    #navbar-wrapper {
-      display: block;
+    .mobile-menu-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .mobile-menu-btn:hover {
+      background: rgba(0,0,0,0.05);
     }
 
-    #menu-main-menu.menu {
-      display: grid;
-      grid-auto-flow: row;
-      gap: 6px;
-      padding: 0.5rem 0;
+    /* lenyíló nav: alapból rejtve */
+    #mobile-navbar {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 3rem;           /* header magasság */
+        background: #fff;
+        border-top: 1px solid rgba(0,0,0,0.08);
+        padding: 0.5rem 1rem 0.75rem;
+        z-index: 1600;
+    }
+    #mobile-navbar.is-open { display: block; }
+
+    /* a klónozott lista legyen egymás alatt */
+    #mobile-navbar .mobile-menu-list {
       margin: 0;
+      padding: 0.25rem 0 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
     }
 
-    #menu-main-menu.menu > li {
-      list-style: none;
+    #mobile-navbar .mobile-menu-list li {
       margin: 0;
       padding: 0;
+      list-style: none;
     }
 
-    #menu-main-menu.menu a {
+    #mobile-navbar .mobile-menu-list a {
       display: block;
       padding: 10px 12px;
       border-radius: 12px;
     }
 
-    #menu-main-menu.menu a:hover {
+    #mobile-navbar .mobile-menu-list a:hover {
       background: rgba(0,0,0,0.05);
     }
+    @media screen and (max-width: 991px) {
+        /* A konténer ne örököljön semmi "levágós" szabályt */
+        #mobile-menu-container {
+            display: block !important;
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
 
-    /* Mobilon menü nyitáskor ne görgessen a háttér */
-    html.menu-open,
-    body.menu-open {
-      overflow: hidden !important;
+        /* A klónozott lista: fixen látszódjon */
+        #mobile-navbar .mobile-menu-list {
+            display: grid !important;
+            grid-auto-flow: row;
+            gap: 6px;
+
+            margin: 0 !important;
+            padding: 0.25rem 0 0 !important;
+
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+
+            list-style: none !important;
+        }
+
+        #mobile-navbar .mobile-menu-list > li {
+            display: block !important;
+            height: auto !important;
+        }
+
+        #mobile-navbar .mobile-menu-list a {
+            display: block !important;
+            padding: 10px 12px;
+            border-radius: 12px;
+        }
     }
   }
-
-  /* Desktopon maradhat a meglévő layoutod, a hamburger rejtve van.
-     Ha a meglévő CSS-ed flexeli a navot, az továbbra is működni fog. */
-
-  /* Search overlay: csak desktop (a mobil media query felülírja) */
-  #search-overlay { display: none; }
-  #search-overlay.is-open { display: block; }
+  @media screen and (max-width: 991px) {
+    #mobile-navbar.is-open {
+        height: auto !important;
+        max-height: calc(100dvh - 3rem) !important;
+        overflow: auto !important;
+    }
+  }
 </style>

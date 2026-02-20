@@ -202,6 +202,7 @@ ul {
   background: #fff;
   display: none;
 }
+
 #mobile-header #logo {
   width: -webkit-calc(50% - 1rem);
   width: calc(50% - 1rem);
@@ -1020,7 +1021,7 @@ body.search-no-results #search-overlay #searchform .no-results {
     display: block;
   }
   #main-content {
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
   }
   #main-content #index-slider h2 {
     display: none;

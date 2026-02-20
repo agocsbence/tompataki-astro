@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import playWhite from '../assets/play_white.png';
+import VimeoLightbox from "../components/VimeoLightbox.astro";
 interface Props {
     title: string;
 	image: string;
@@ -18,8 +19,22 @@ const {title, image, director, videoLogo, vimeoUrl} = Astro.props;
         <Image src={videoLogo} alt={title} width="400" height="50" sizes="(max-width: 600px) 400px, 500px" loading="lazy" />
         <p><span class="title">{title}</span></p>
         <div class="play">
-            <Image src={playWhite.src} alt="Play" width="32" height="32" sizes="(max-width: 35px) 32px, 32px" loading="lazy" />
-            <a href={vimeoUrl}></a>
+            <VimeoLightbox url={`${vimeoUrl}?dnt=1`}>
+                <Image
+                    src={playWhite.src}
+                    alt="Play"
+                    width="32"
+                    height="32"
+                    sizes="(max-width: 35px) 32px, 32px"
+                    loading="lazy"
+                />
+            </VimeoLightbox>
         </div>
     </div>
 </div>
+
+<style is:inline>
+    .swiper-navigation-icon {
+        display: none;
+    }
+</style>
