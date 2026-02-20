@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import playWhite from '../assets/play_white.png';
+import VimeoLightbox from "../components/VimeoLightbox.astro";
 interface Props {
     id: string;
     title: string;
@@ -14,7 +15,8 @@ interface Props {
 const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.props;
 ---
 
-<div class="swiper-slide" style={`background-image: url('https://vumbnail.com/${shortVimeoId}_large.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;`}>
+<div class="swiper-slide" style={``}>
+    <Image src={`https://vumbnail.com/${shortVimeoId}_large.jpg`} class="thumbnailImage" alt={title} width="2560" height="1064" />
     {
         <iframe
             class="video showreel player nomargin"
@@ -31,11 +33,19 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.pr
     }
     <div class="index-slider-info">
         <p><span>director </span>{director}</p>
-        <Image src={videoLogo} alt={title} width="800" height="100" sizes="(max-width: 1000px) 500px, 800px" loading="lazy" />
-        <p><span class="title" set:html={title}></span></p>
+        <img src={videoLogo} alt={title} sizes="(max-width: 1000px) 500px, 800px" loading="lazy" />
+        <p><span class="title">{title}</span></p>
         <div class="play">
-            <Image src={playWhite.src} alt="Play" width="53" height="53" sizes="(max-width: 55px) 53px, 53px" loading="lazy" />
-            <a href={`${vimeoUrl}?dnt=1`}></a>
+            <VimeoLightbox url={`${vimeoUrl}?dnt=1`}>
+                <Image
+                    src={playWhite.src}
+                    alt="Play"
+                    width="53"
+                    height="53"
+                    sizes="(max-width: 55px) 53px, 53px"
+                    loading="lazy"
+                />
+            </VimeoLightbox>
         </div>
     </div>
 </div>
@@ -46,5 +56,11 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.pr
         transform: scale(1.05);
         transition: transform .3s ease;
     }
+}
+.thumbnailImage {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2.406 / 1;
+    object-fit: cover;
 }
 </style>

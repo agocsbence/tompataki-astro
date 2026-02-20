@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import FeatureFilm from '../components/FeatureFilm.astro';
 import TermsConditions from '../components/TermsConditions.astro';
 let featureFilms = await fetch('https://cms.tompataki.com/wp-json/wp/v2/featured_films?_embed&acf_format=standard', {cache: "no-store",}).then((r) => r.json());
-
 ---
 
 <Layout bodyClass="page-template-page-featured" description="Feature films I was working on">

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import imdbLogo from '../assets/imdb-black.png';
 interface Props {
     id: string;
@@ -30,7 +31,9 @@ const {id, logo, title, category, thumbnailVimeoId, vimeoUrl, description, staff
                     allow="autoplay"
                     data-ready="true"
                 ></iframe>
-                <img class="logo" src={logo} alt={title} width="1000">
+                
+                <Image class="logo" src={logo} alt={title} width="1000" height="auto" sizes="(max-width: 1000px) 800px, 1000px" loading="lazy" />
+                
             
                 {/* <img class="thumbnail" src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>"> */}
             
@@ -56,7 +59,7 @@ const {id, logo, title, category, thumbnailVimeoId, vimeoUrl, description, staff
             
             <p class="imdb-logo">
                 <a href={imdb_url} target="blank">
-                    <img src={imdbLogo.src} alt="Imdb logo" width="48" height="23">
+                    <Image src={imdbLogo.src} alt="Imdb logo" width="48" height="23" sizes="(max-width: 50px) 48px, 49px" loading="lazy" />
                 </a>
             </p>
 

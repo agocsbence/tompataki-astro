@@ -485,7 +485,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './build-service_DsZNuCJq.mjs'
+      './build-service_DZUKevt6.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -800,7 +800,7 @@ const $$Font = createComponent(($$result, $$props, $$slots) => {
 }, "/Users/benceagocs/Documents/work/tompataki-astro/node_modules/astro/components/Font.astro", void 0);
 
 const assetQueryParams = undefined;
-							const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"@astrojs/vercel/build-image-service","config":{"sizes":[640,750,828,1080,1200,1920,2048,3840],"domains":["cms.tompataki.com"],"remotePatterns":[{"protocol":"https","hostname":"cms.tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"i.vimeocdn.com","pathname":"/**"}]}},"domains":["cms.tompataki.com"],"remotePatterns":[{"protocol":"https","hostname":"cms.tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"i.vimeocdn.com","pathname":"/**"}],"responsiveStyles":false,"breakpoints":[640,750,828,1080,1200,1920,2048,3840]};
+							const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"@astrojs/vercel/build-image-service","config":{"sizes":[640,750,828,1080,1200,1920,2048,3840],"domains":["cms.tompataki.com"],"remotePatterns":[{"protocol":"https","hostname":"cms.tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"i.vimeocdn.com","pathname":"/**"},{"protocol":"https","hostname":"vumbnail.com","pathname":"/**"}]}},"domains":["cms.tompataki.com"],"remotePatterns":[{"protocol":"https","hostname":"cms.tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"tompataki.com","pathname":"/**"},{"protocol":"https","hostname":"i.vimeocdn.com","pathname":"/**"},{"protocol":"https","hostname":"vumbnail.com","pathname":"/**"}],"responsiveStyles":false,"breakpoints":[640,750,828,1080,1200,1920,2048,3840]};
 							Object.defineProperty(imageConfig, 'assetQueryParams', {
 								value: assetQueryParams,
 								enumerable: false,

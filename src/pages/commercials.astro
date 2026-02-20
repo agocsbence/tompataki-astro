@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import VimeoLightbox from "../components/VimeoLightbox.astro";
 import playBlack from '../assets/play_black-solid.png';
 import playWhite from '../assets/play_white-solid.png';
 import Layout from '../layouts/Layout.astro';
@@ -27,24 +28,25 @@ let commercials = await fetch('https://cms.tompataki.com/wp-json/wp/v2/commercia
             {
                 commercials.map((commercial) => 
                     <div class="grid-item" id={`commercial-${commercial.id}`}>
-                        <div class="grid-item-image" style={`--aspect-ratio: 16/9; background-image: url(${commercial._embedded['wp:featuredmedia'][0].source_url});`}>
+                        <div class="grid-item-image" style={`--aspect-ratio: 16/9;`}>
+                            <Image src={commercial._embedded['wp:featuredmedia'][0].source_url} alt={commercial.title.rendered} width="400" height="227" sizes="(max-width: 500px) 400px, 450px" loading="lazy" />
                             <div id="grid-details">
                                 <p>directed by
                                     <span>{commercial.acf.directed_by}</span>
                                 </p>
-                                <h2><a href={commercial.acf.commercial_video_url} set:html={commercial.title.rendered}></a></h2>
+                                <h2 set:html={commercial.title.rendered}></h2>
                                 <div class="play">
                                     { commercial.id == 134 || commercial.id == 122 ?
 
-                                        <a href={commercial.acf.commercial_video_url}>
-                                            <Image src={playBlack.src} alt="Play" width="45" height="45" sizes="(max-width: 45px) 45px, 45px" loading="lazy" />
-                                        </a>
+                                        <VimeoLightbox url={`${commercial.acf.commercial_video_url}?dnt=1`}>
+                                            <Image src={playBlack.src} alt="Play" width="45" height="45" sizes="(max-width: 50px) 45px, 45px" loading="lazy" />
+                                        </VimeoLightbox>
 
                                         :
 
-                                        <a href={commercial.acf.commercial_video_url}>
-                                            <Image src={playWhite.src} alt="Play" width="45" height="45" sizes="(max-width: 45px) 45px, 45px" loading="lazy" />
-                                        </a>
+                                        <VimeoLightbox url={`${commercial.acf.commercial_video_url}?dnt=1`}>
+                                            <Image src={playWhite.src} alt="Play" width="45" height="45" sizes="(max-width: 50px) 45px, 45px" loading="lazy" />
+                                        </VimeoLightbox>
                                     }
 
                                 </div>

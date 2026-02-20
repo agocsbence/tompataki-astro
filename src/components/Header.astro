@@ -4,77 +4,112 @@ import searchIcon from '../assets/search.svg';
 import logoBlack from '../assets/logo-black.png';
 import { Image } from "astro:assets";
 
+const NAV = [
+  { href: "/feature-films", label: "Feature films / Series" },
+  { href: "/commercials", label: "Commercials" },
+  { href: "/special-projects", label: "Special projects" },
+  { href: "/showreel", label: "Showreel" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
 ---
 
-    <!-- <div class="preloader-wrapper">
-        <div class="preloader">
-            <img src={loadIcon.src} alt="loading...">
-        </div>
-    </div> -->
+<!-- <div class="preloader-wrapper">
+  <div class="preloader">
+    <img src={loadIcon.src} alt="loading...">
+  </div>
+</div> -->
 
-    <section id="header">
-        <div id="headline">
-            <a href="/">
-                <Image src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18" sizes="(max-width: 250px) 180px, 192px" loading="lazy" />
-            </a>
-            <span>EN | HU</span>
-        </div>
-        <div id="navbar">
+<header id="site-header">
+  <div id="headline">
+    <a href="/" class="brand" aria-label="Home">
+      <Image
+        src={logoBlack.src}
+        alt="Tom Pataki logo"
+        width="192"
+        height="18"
+        sizes="(max-width: 250px) 180px, 192px"
+        loading="lazy"
+        class="brand-logo"
+      />
+    </a>
 
-            <div id="navbar-wrapper">
-                <div class="menu-main-menu-container">
-                    <ul id="menu-main-menu" class="menu">
-                        <li id="menu-item-265" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="/feature-films">Feature films / Series</a></li>
-                        <li id="menu-item-64" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-64"><a href="/commercials">Commercials</a></li>
-                        <li id="menu-item-63" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-63"><a href="/special-projects">Special projects</a></li>
-                        <li id="menu-item-62" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="/showreel">Showreel</a></li>
-                        <li id="menu-item-61" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-61"><a href="/about">About</a></li>
-                        <li id="menu-item-60" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-                <img src={searchIcon.src} alt="Search" id="searchButton" width="16" height="16">
-            </div>
+    <span class="lang">EN | HU</span>
 
-        </div>
-    </section>
-    <div id="search-overlay">
-        <div id="search-overlay-wrapper">
-            <span id="searchClose">X</span>
-            <form role="search" method="get" id="searchform" action="/search">
-                <div>
-                    <label for="q">Search anything and hit enter</label>
-                    <input type="text" value="" name="q" id="q" placeholder="Search" />
-                    <input type="submit" id="searchsubmit" value="Search" class="button" />
-                </div>
-            </form>
-        </div>
+    <!-- Mobil hamburger (desktopon rejtve) -->
+    <button
+      id="hamburger"
+      class="hamburger"
+      type="button"
+      aria-label="Open menu"
+      aria-controls="navbar"
+      aria-expanded="false"
+    >
+      <span class="hamburger-lines" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <nav id="navbar" aria-label="Primary navigation">
+    <div id="navbar-wrapper">
+      <div class="menu-main-menu-container">
+        <ul id="menu-main-menu" class="menu">
+          {NAV.map((item) => (
+            <li class="menu-item">
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Desktop search ikon (mobilon CSS-sel rejtve) -->
+      <img src={searchIcon.src} alt="Search" id="searchButton" width="16" height="16" class="search-icon">
     </div>
-    <section id="mobile-header">
-        <div id="logo">
-            <a href="/">
-                <Image src={logoBlack.src} alt="Tom Pataki logo" width="192" height="18" sizes="(max-width: 250px) 180px, 192px" loading="lazy" />
-            </a>
-        </div>
-        <div id="menu">
-            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="mobileMenu()">&#9776;</a>
-        </div>
-        <div id="mobile-navbar" class="mobile-nav">
+  </nav>
+</header>
 
-            <div class="menu-main-menu-container">
-                <ul id="menu-main-menu-1" class="menu">
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="/feature-films">Feature films / Series</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-64"><a href="/commercials">Commercials</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-63"><a href="/special-projects">Special projects</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="/showreel">Showreel</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-61"><a href="/about">About</a></li>
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-60"><a href="/contact">Contact</a></li>
-                </ul>
-            </div>
+<!-- Search overlay: desktopon működik, mobilon CSS-sel rejtve -->
+<div id="search-overlay" aria-hidden="true">
+  <div id="search-overlay-wrapper">
+    <span id="searchClose" role="button" tabindex="0" aria-label="Close search">X</span>
+    <form role="search" method="get" id="searchform" action="/search">
+      <div>
+        <label for="q">Search anything and hit enter</label>
+        <input type="text" value="" name="q" id="q" placeholder="Search" />
+        <input type="submit" id="searchsubmit" value="Search" class="button" />
+      </div>
+    </form>
+  </div>
+</div>
 
-        </div>
-    </section>
+<script is:inline>
+  // Mobil menü toggle (minimál JS)
+  const header = document.getElementById("site-header");
+  const hamburger = document.getElementById("hamburger");
+  const navbar = document.getElementById("navbar");
 
-<script>
+  const setMenuOpen = (open) => {
+    header?.classList.toggle("is-menu-open", open);
+    hamburger?.setAttribute("aria-expanded", open ? "true" : "false");
+    document.documentElement.classList.toggle("menu-open", open);
+    document.body.classList.toggle("menu-open", open);
+  };
+
+  hamburger?.addEventListener("click", () => {
+    const open = !header?.classList.contains("is-menu-open");
+    setMenuOpen(open);
+  });
+
+  // linkre kattintva zárjuk a menüt mobilon
+  navbar?.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  // ESC zár
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenuOpen(false);
+  });
+
+  // Desktop search (mobilon eleve rejtve)
   const btn = document.getElementById("searchButton");
   const overlay = document.getElementById("search-overlay");
   const close = document.getElementById("searchClose");
@@ -82,28 +117,152 @@ import { Image } from "astro:assets";
 
   function openSearch() {
     overlay?.classList.add("is-open");
-    // kis delay, hogy a megjelenés után fókuszáljon
+    overlay?.setAttribute("aria-hidden", "false");
     setTimeout(() => input?.focus(), 50);
   }
   function closeSearch() {
     overlay?.classList.remove("is-open");
+    overlay?.setAttribute("aria-hidden", "true");
   }
 
   btn?.addEventListener("click", openSearch);
   close?.addEventListener("click", closeSearch);
+  close?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") closeSearch();
+  });
 
-  // kattintás overlay háttérre zárjon (ha a wrapperen kívül kattintasz)
   overlay?.addEventListener("click", (e) => {
     if (e.target === overlay) closeSearch();
   });
 
-  // ESC zár
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeSearch();
   });
 </script>
 
 <style>
-#search-overlay { display: none; }
-#search-overlay.is-open { display: block; }
+  /* =========================
+     Alap: 1 navbar, nincs duplikáció
+     ========================= */
+
+  /* Logo torzítás nélkül */
+  .brand-logo {
+    height: 18px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Hamburger gomb */
+  .hamburger {
+    display: none; /* desktopon rejtve */
+    appearance: none;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 0;
+  }
+  .hamburger:hover {
+    background: rgba(0,0,0,0.05);
+  }
+
+  .hamburger-lines {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: #111;
+    position: relative;
+    border-radius: 999px;
+  }
+  .hamburger-lines::before,
+  .hamburger-lines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: #111;
+    border-radius: 999px;
+  }
+  .hamburger-lines::before { top: -6px; }
+  .hamburger-lines::after  { top:  6px; }
+
+  /* Mobilon nincs search ikon + overlay */
+  @media screen and (max-width: 991px) {
+    .lang { display: none; }              /* ha mobilon nem kell */
+    .search-icon { display: none !important; }
+    #search-overlay { display: none !important; }
+
+    /* Headline: bal logo, jobb hamburger */
+    #headline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 3rem;
+      line-height: 3rem;
+      gap: 12px;
+      padding: 0 1rem;
+    }
+
+    .hamburger { display: inline-flex; }
+
+    /* A desktop navbar wrappered jelenleg sok mindent csinál.
+       Mobilon a nav legyen "lenyíló" blokk, ne duplázódjon. */
+    #navbar {
+      display: none;
+      padding: 0.5rem 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: #fff;
+    }
+
+    /* amikor nyitva van */
+    #site-header.is-menu-open #navbar {
+      display: block;
+    }
+
+    /* Menü elemek egymás alatt */
+    #navbar-wrapper {
+      display: block;
+    }
+
+    #menu-main-menu.menu {
+      display: grid;
+      grid-auto-flow: row;
+      gap: 6px;
+      padding: 0.5rem 0;
+      margin: 0;
+    }
+
+    #menu-main-menu.menu > li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #menu-main-menu.menu a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+
+    #menu-main-menu.menu a:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    /* Mobilon menü nyitáskor ne görgessen a háttér */
+    html.menu-open,
+    body.menu-open {
+      overflow: hidden !important;
+    }
+  }
+
+  /* Desktopon maradhat a meglévő layoutod, a hamburger rejtve van.
+     Ha a meglévő CSS-ed flexeli a navot, az továbbra is működni fog. */
+
+  /* Search overlay: csak desktop (a mobil media query felülírja) */
+  #search-overlay { display: none; }
+  #search-overlay.is-open { display: block; }
 </style>

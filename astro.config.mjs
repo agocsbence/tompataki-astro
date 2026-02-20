@@ -18,21 +18,10 @@ export default defineConfig({
   image: {
     domains: ["cms.tompataki.com"],
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cms.tompataki.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "tompataki.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "i.vimeocdn.com",
-        pathname: "/**",
-      },
+      { protocol: "https", hostname: "cms.tompataki.com", pathname: "/**" },
+      { protocol: "https", hostname: "tompataki.com", pathname: "/**" },
+      { protocol: "https", hostname: "i.vimeocdn.com", pathname: "/**" },
+      { protocol: "https", hostname: "vumbnail.com", pathname: "/**" },
     ],
   },
 

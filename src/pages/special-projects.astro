@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import VimeoLightbox from "../components/VimeoLightbox.astro";
 import Layout from '../layouts/Layout.astro';
 import TermsConditions from '../components/TermsConditions.astro';
 let page = await fetch('https://cms.tompataki.com/wp-json/wp/v2/pages/34?_embed&acf_format=standard').then((r) => r.json());
@@ -26,13 +27,14 @@ let projects = await fetch('https://cms.tompataki.com/wp-json/wp/v2/special_proj
                 projects.map((project) => (
                     project.id == 80 ? 
                         <div class="play"> 
-                            <div class={`grid-item special-project-id-${project.id}`} style={`--aspect-ratio: 16/9.8; background-image: url(${project._embedded['wp:featuredmedia'][0].source_url});`}>
-                                <div class="project-logo">
-                                    <Image src={project.acf.logo} alt="logo" width="410" height="253" sizes="(max-width: 410px) 410px, 410px" loading="lazy" />
+                            <VimeoLightbox url={`${project.acf.vimeo_url}?dnt=1`}>
+                                <div class={`grid-item special-project-id-${project.id}`} style={`--aspect-ratio: 16/9.8; background-image: url(${project._embedded['wp:featuredmedia'][0].source_url});`}>
+                                    <div class="project-logo">
+                                        <Image src={project.acf.logo} alt="logo" width="410" height="253" sizes="(max-width: 410px) 410px, 410px" loading="lazy" />
+                                    </div>
+                                    <div class="grid-item-overlay" style={`background-image: url(${project.acf.overlay_image})`}></div>
                                 </div>
-                                <div class="grid-item-overlay" style={`background-image: url(${project.acf.overlay_image})`}></div>
-                            </div>
-                            <a href={project.acf.vimeo_url}></a>
+                            </VimeoLightbox>
                         </div>
                     :
                         <a href={project.id == 78 ? '#' : `/special_projects/${project.slug}`} class={`grid-item special-project-id-${project.id}`} style={`--aspect-ratio: 16/9.8; background-image: url(${project._embedded['wp:featuredmedia'][0].source_url});`}>

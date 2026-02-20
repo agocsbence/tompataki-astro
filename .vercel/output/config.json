@@ -53,6 +53,11 @@
 				"protocol": "https",
 				"hostname": "i.vimeocdn.com",
 				"pathname": "/**"
+			},
+			{
+				"protocol": "https",
+				"hostname": "vumbnail.com",
+				"pathname": "/**"
 			}
 		]
 	}

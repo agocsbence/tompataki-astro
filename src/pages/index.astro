@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
 import IndexSliderMobile from '../components/IndexSliderMobile.astro';
 import IndexSlider from '../components/IndexSlider.astro';
@@ -83,7 +84,9 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
 
                         <div class="swiper-slide">
                             <div class="news-list-item">
-                                <div class="image" style={`background-image: url(${post._embedded['wp:featuredmedia'][0].source_url});`}></div>
+                                <div class="image">
+                                    <Image src={post._embedded['wp:featuredmedia'][0].source_url} alt={post.title.rendered} width="427" height="240" sizes="(max-width: 500px) 420px, 450px" loading="lazy" />
+                                </div>
                                 <div class="text">
                                     <div class="news-category">
                                         <span>{post.acf.category}</span>
