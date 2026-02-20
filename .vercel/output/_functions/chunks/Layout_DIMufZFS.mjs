@@ -1,8 +1,8 @@
-import { c as createComponent, s as spreadAttributes, u as unescapeHTML, a as renderTemplate, r as renderComponent, b as addAttribute, m as maybeRenderHead, e as createAstro, f as renderSlot, g as renderHead } from './astro/server_t0PYe2u-.mjs';
+import { c as createComponent, s as spreadAttributes, u as unescapeHTML, a as renderTemplate, r as renderComponent, b as addAttribute, m as maybeRenderHead, e as createAstro, f as renderSlot, g as renderHead } from './astro/server_a-LjaXZn.mjs';
 import 'piccolore';
 /* empty css                         */
 import 'clsx';
-import { $ as $$Image } from './_astro_assets_DMUp5-Lh.mjs';
+import { $ as $$Image } from './_astro_assets_C5KJorw6.mjs';
 
 function createSvgComponent({ meta, attributes, children }) {
   const Component = createComponent((_, props) => {
@@ -62,12 +62,12 @@ var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
 var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
 var _a;
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://tompataki.com");
 const $$Layout = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Layout;
   const { bodyClass, description } = Astro2.props;
-  return renderTemplate(_a || (_a = __template(['<html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/swiper.css"><script>\n			function mobileMenu() {\n				var x = document.getElementById("mobile-navbar");\n				if (x.className === "mobile-nav") {\n					x.className += " show";\n				} else {\n					x.className = "mobile-nav";\n				}\n			}\n		<\/script><meta name="generator"', '><meta name="description"', "><title>Tom Pataki</title>", "</head> <body", "> ", ' <section id="main-content"> ', " </section> ", '  <script>\nfunction mobileMenu() {\n	var x = document.getElementById("mobile-navbar");\n	if (x.className === "mobile-nav") {\n		x.className += " show";\n	} else {\n		x.className = "mobile-nav";\n	}\n}\n<\/script></body></html>'])), addAttribute(Astro2.generator, "content"), addAttribute(`Tom Pataki - ${description}`, "content"), renderHead(), addAttribute(bodyClass, "class"), renderComponent($$result, "Header", $$Header, {}), renderSlot($$result, $$slots["default"]), renderComponent($$result, "Footer", $$Footer, {}));
+  return renderTemplate(_a || (_a = __template(['<html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/swiper.css"><link rel="sitemap" href="/sitemap-index.xml"><script>\n			function mobileMenu() {\n				var x = document.getElementById("mobile-navbar");\n				if (x.className === "mobile-nav") {\n					x.className += " show";\n				} else {\n					x.className = "mobile-nav";\n				}\n			}\n		<\/script><meta name="generator"', '><meta name="description"', "><title>Tom Pataki</title>", "</head> <body", "> ", ' <section id="main-content"> ', " </section> ", '  <script>\nfunction mobileMenu() {\n	var x = document.getElementById("mobile-navbar");\n	if (x.className === "mobile-nav") {\n		x.className += " show";\n	} else {\n		x.className = "mobile-nav";\n	}\n}\n<\/script></body></html>'])), addAttribute(Astro2.generator, "content"), addAttribute(`Tom Pataki - ${description}`, "content"), renderHead(), addAttribute(bodyClass, "class"), renderComponent($$result, "Header", $$Header, {}), renderSlot($$result, $$slots["default"]), renderComponent($$result, "Footer", $$Footer, {}));
 }, "/Users/benceagocs/Documents/work/tompataki-astro/src/layouts/Layout.astro", void 0);
 
 export { $$Layout as $, createSvgComponent as c };

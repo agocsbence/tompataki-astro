@@ -2,7 +2,10 @@
 import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel";
 
+import sitemap from "@astrojs/sitemap";
+
 export default defineConfig({
+  site: "https://tompataki.com",
   vite: {
     server: { fs: { allow: [process.cwd()] } },
   },
@@ -28,4 +31,6 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
   }),
+
+  integrations: [sitemap()],
 });

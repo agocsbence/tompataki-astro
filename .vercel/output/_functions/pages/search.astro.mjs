@@ -1,11 +1,11 @@
-import { c as createComponent, e as createAstro, r as renderComponent, a as renderTemplate, m as maybeRenderHead, b as addAttribute } from '../chunks/astro/server_t0PYe2u-.mjs';
+import { e as createAstro, c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, b as addAttribute } from '../chunks/astro/server_a-LjaXZn.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_2GOVUkB-.mjs';
-import { $ as $$VimeoLightbox } from '../chunks/VimeoLightbox_B2d0W0gm.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DIMufZFS.mjs';
+import { $ as $$VimeoLightbox } from '../chunks/VimeoLightbox_CVQFO-86.mjs';
 /* empty css                                  */
 export { renderers } from '../renderers.mjs';
 
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://tompataki.com");
 const prerender = false;
 const $$Search = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);

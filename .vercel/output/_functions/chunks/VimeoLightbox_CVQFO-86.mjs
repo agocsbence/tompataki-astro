@@ -1,4 +1,4 @@
-import { c as createComponent, e as createAstro, a as renderTemplate, f as renderSlot, b as addAttribute, m as maybeRenderHead } from './astro/server_t0PYe2u-.mjs';
+import { e as createAstro, c as createComponent, a as renderTemplate, f as renderSlot, b as addAttribute, m as maybeRenderHead } from './astro/server_a-LjaXZn.mjs';
 import 'piccolore';
 import 'clsx';
 /* empty css                         */
@@ -7,7 +7,7 @@ var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
 var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
 var _a;
-const $$Astro = createAstro();
+const $$Astro = createAstro("https://tompataki.com");
 const $$VimeoLightbox = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$VimeoLightbox;
