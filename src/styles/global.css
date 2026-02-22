@@ -885,6 +885,9 @@ body.search-no-results #search-overlay #searchform .no-results {
 #commercial-134 #grid-details {
   color: #000 !important;
 }
+.reel-id-891 #grid-details {
+  text-shadow: 1px 1px 2px black;
+}
 .vp-player-layout {
   width: 100vw !important;
 }
@@ -6151,7 +6154,7 @@ body.home #main-content #index-slider #index-slider-container .swiper-wrapper .s
 }
 body.home #main-content #index-slider #index-slider-container .swiper-wrapper .swiper-slide .index-slider-info img {
   max-width: 30vw;
-  max-height: 6rem;
+  max-height: 8rem;
   margin: 1rem 0;
 }
 /* body.home #main-content #index-slider #index-slider-container .swiper-wrapper .swiper-slide .index-slider-info .play img {

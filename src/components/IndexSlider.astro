@@ -34,7 +34,7 @@ const {id, title, shortVimeoId, director, videoLogo, vimeoUrl, muxId} = Astro.pr
     <div class="index-slider-info">
         <p><span>director </span>{director}</p>
         <img src={videoLogo} alt={title} sizes="(max-width: 1000px) 500px, 800px" loading="lazy" />
-        <p><span class="title">{title}</span></p>
+        <p><span class="title" set:html={title}></span></p>
         <div class="play">
             <VimeoLightbox url={`${vimeoUrl}?dnt=1`}>
                 <Image
