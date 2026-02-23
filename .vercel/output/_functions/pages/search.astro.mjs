@@ -1,6 +1,6 @@
 import { e as createAstro, c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead, b as addAttribute } from '../chunks/astro/server_a-LjaXZn.mjs';
 import 'piccolore';
-import { $ as $$Layout } from '../chunks/Layout_DI7wZnA1.mjs';
+import { $ as $$Layout } from '../chunks/Layout_RVi9Cpx_.mjs';
 import { $ as $$VimeoLightbox } from '../chunks/VimeoLightbox_CVQFO-86.mjs';
 /* empty css                                  */
 export { renderers } from '../renderers.mjs';

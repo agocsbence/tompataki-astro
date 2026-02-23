@@ -5766,6 +5766,9 @@ body.special_projects-template-houdinivid-single-special_projects {
   object-fit: cover;
   position: absolute;
 }
+.page-template-page-commercials #main-content #commercials .grid-gap .grid-item .grid-item-image .play img {
+  position: relative;
+}
 .page-template-page-commercials #main-content #commercials .grid-gap .grid-item .grid-item-image #grid-details {
   position: absolute;
   top: 50%;
