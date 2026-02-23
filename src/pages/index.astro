@@ -91,7 +91,7 @@ let posts = await fetch('https://cms.tompataki.com/wp-json/wp/v2/posts?_embed&ac
                                     <div class="news-category">
                                         <span>{post.acf.category}</span>
                                     </div>
-                                    <h2><a href={post.acf.website_link} target="blank">{post.title.rendered}</a></h2>
+                                    <h2><a href={post.acf.website_link} target="blank" set:html={post.title.rendered}></a></h2>
                                     <div set:html={post.excerpt.rendered}></div>
                                     <div class="news-meta">
                                         <div class="span-50 left">

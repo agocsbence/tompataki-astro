@@ -5759,6 +5759,8 @@ body.special_projects-template-houdinivid-single-special_projects {
   opacity: 1;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 .page-template-page-commercials #main-content #commercials .grid-gap .grid-item .grid-item-image #grid-details {
   position: absolute;
