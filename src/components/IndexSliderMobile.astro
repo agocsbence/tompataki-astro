@@ -17,7 +17,7 @@ const {title, image, director, videoLogo, vimeoUrl} = Astro.props;
     <div class="index-slider-info">
         <p><span>director </span>{director}</p>
         <Image src={videoLogo} alt={title} width="400" height="50" sizes="(max-width: 600px) 400px, 500px" loading="lazy" />
-        <p><span class="title">{title}</span></p>
+        <p><span class="title" set:html={title}></span></p>
         <div class="play">
             <VimeoLightbox url={`${vimeoUrl}?dnt=1`}>
                 <Image
